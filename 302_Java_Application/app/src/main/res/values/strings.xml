@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">302_Java_Application</string>
+
+    <string name="top_picks">Top Picks</string>
+    <string name="categories">Categories</string>
+</resources>
