@@ -1,20 +1,23 @@
 package com.example.a302_java_application;
-
+import java.text.SimpleDateFormat;
 
 // Class which holds the album item data
-public class Album {
+public abstract class Album {
 
     private String name;
     private String category;
     private String artist;
     private String description;
+
+    private SimpleDateFormat releaseDate;
     private boolean liked;
 
-    public Album(String name, String category, String artist, String description, boolean liked) {
+    public Album(String name, String category, String artist, String description, SimpleDateFormat releaseDate, boolean liked) {
         this.name = name;
         this.category = category;
         this.artist = artist;
         this.description = description;
+        this.releaseDate = releaseDate;
         this.liked = liked;
     }
 
@@ -32,6 +35,10 @@ public class Album {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate.toString();
     }
 
     public boolean isLiked() {
