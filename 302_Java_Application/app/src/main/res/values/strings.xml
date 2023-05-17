@@ -3,4 +3,10 @@
 
     <string name="top_picks">Top Picks</string>
     <string name="categories">Categories</string>
+    <string name="home_page">Home Page</string>
+
+    <string name="girl_group">Girl Group</string>
+    <string name="boy_group">Boy Group</string>
+    <string name="solo">Soloist</string>
+
 </resources>
