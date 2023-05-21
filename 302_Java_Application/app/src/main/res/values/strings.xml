@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">302_Java_Application</string>
 
-    <string name="top_picks">Top Picks</string>
+    <string name="top_picks">Most Viewed</string>
     <string name="categories">Categories</string>
     <string name="home_page">Home Page</string>
 

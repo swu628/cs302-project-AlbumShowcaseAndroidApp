@@ -2,7 +2,7 @@ package com.example.a302_java_application;
 import java.text.SimpleDateFormat;
 
 // Class which holds the album item data
-public abstract class Album {
+public class Album {
 
     private String name;
     private String category;
