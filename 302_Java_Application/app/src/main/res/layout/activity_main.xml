@@ -10,7 +10,7 @@ that follows-->
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/top_picks_recycler"
+        android:id="@+id/most_views_recycler"
         android:layout_width="310dp"
         android:layout_height="85dp"
         app:layout_constraintBottom_toBottomOf="parent"
