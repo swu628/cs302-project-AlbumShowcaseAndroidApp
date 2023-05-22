@@ -9,14 +9,17 @@ public class Album {
     private String artist;
     private String description;
 
-    private SimpleDateFormat releaseDate;
+    private String image;
+    private String releaseDate;
     private boolean liked;
 
-    public Album(String name, String category, String artist, String description, SimpleDateFormat releaseDate, boolean liked) {
+    public Album(String name, String category, String artist, String description, String image,
+                 String releaseDate, boolean liked) {
         this.name = name;
         this.category = category;
         this.artist = artist;
         this.description = description;
+        this.image = image;
         this.releaseDate = releaseDate;
         this.liked = liked;
     }
