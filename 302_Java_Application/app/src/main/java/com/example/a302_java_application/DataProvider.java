@@ -1,35 +1,52 @@
 package com.example.a302_java_application;
 
-import java.text.SimpleDateFormat;
+import android.content.Context;
+
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Random;
+
 
 public class DataProvider {
 
-    private ArrayList<String> names = new ArrayList<String>(Arrays.asList("New Jeans 1st EP 'New " +
-            "Jeans'", "THE ALBUM", "I NEVER DIE", "Love War", "BORN PINK"));
-    private ArrayList<String> artists = new ArrayList<String>(Arrays.asList("NewJeans", "BLACKPINK",
-            "(G)I-DLE", "YENA", "BLACKPINK"));
-    private ArrayList<String> categories = new ArrayList<String>(Arrays.asList("Girl Group", "Girl Group",
-            "Girl Group", "Girl Group", "Girl Group"));
-    private ArrayList<String> descriptions = new ArrayList<String>(Arrays.asList("Description", "Description",
-            "Description", "Description", "Description"));
+    private Context context;
 
-    private ArrayList<String> images = new ArrayList<String>(Arrays.asList("image", "image", "image",
-            "image", "image"));
-    private ArrayList<String> releaseDates = new ArrayList<String>(Arrays.asList("01/08/22", "02/10/20", "12/03/22",
-            "17/01/23", "16/09/22"));
-    private boolean[] favourites = {false, false, false, false, false};
+    private static ArrayList<Album> allAlbums;
+
+    public DataProvider(Context context) {
+
+        this.context = context;
+    }
 
     public ArrayList<Album> getAlbums() {
-        ArrayList<Album> albumList = new ArrayList<Album>();
 
-        for (int i = 0; i < names.size(); i++) {
-            Album newAlbum = new Album(names.get(i), categories.get(i),artists.get(i),
-                    descriptions.get(i), images.get(i), releaseDates.get(i), favourites[i]);
+        ArrayList<Album> albumList = new ArrayList<Album>();
+        String[] names = context.getResources().getStringArray(R.array.album_names);
+        String[] artists = context.getResources().getStringArray(R.array.album_artist);
+        String[] categories = context.getResources().getStringArray(R.array.album_category);
+        String[] dates = context.getResources().getStringArray(R.array.album_release_date);
+        String[] imageNames = context.getResources().getStringArray(R.array.album_image);
+        String[] descriptions = context.getResources().getStringArray(R.array.album_description);
+
+        for (int i = 0; i < names.length; i++) {
+
+//            Generate random number of views for album item
+            Random rand = new Random();
+            int randView = rand.nextInt(20);
+
+//            Create and add album item to list of albums
+            Album newAlbum = new Album(names[i], categories[i], artists[i], descriptions[i],
+                    imageNames[i], dates[i], false, randView);
             albumList.add(newAlbum);
         }
 
+//        Return list of albums
         return albumList;
     }
+
+
+//    Update static list of all albums for ease of use for all activity classes
+    public static void updateAlbumList(ArrayList<Album> albumList) {
+        allAlbums = albumList;
+    }
+
 }

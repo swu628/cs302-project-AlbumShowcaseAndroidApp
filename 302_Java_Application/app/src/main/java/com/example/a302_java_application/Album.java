@@ -1,5 +1,4 @@
 package com.example.a302_java_application;
-import java.text.SimpleDateFormat;
 
 // Class which holds the album item data
 public class Album {
@@ -8,13 +7,13 @@ public class Album {
     private String category;
     private String artist;
     private String description;
-
     private String image;
     private String releaseDate;
     private boolean liked;
+    private int views;
 
     public Album(String name, String category, String artist, String description, String image,
-                 String releaseDate, boolean liked) {
+                 String releaseDate, boolean liked, int views) {
         this.name = name;
         this.category = category;
         this.artist = artist;
@@ -22,6 +21,7 @@ public class Album {
         this.image = image;
         this.releaseDate = releaseDate;
         this.liked = liked;
+        this.views = views;
     }
 
     public String getName() {
@@ -47,4 +47,8 @@ public class Album {
     public boolean isLiked() {
         return liked;
     }
+
+    public int getViews() { return views; }
+
+    public void updateViews() {this.views++;}
 }
