@@ -1,6 +1,8 @@
 package com.example.a302_java_application;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -9,8 +11,8 @@ import java.util.Random;
 public class DataProvider {
 
     private Context context;
+    static ArrayList<Album> allAlbums;
 
-    private static ArrayList<Album> allAlbums;
 
     public DataProvider(Context context) {
 
@@ -24,7 +26,10 @@ public class DataProvider {
         String[] artists = context.getResources().getStringArray(R.array.album_artist);
         String[] categories = context.getResources().getStringArray(R.array.album_category);
         String[] dates = context.getResources().getStringArray(R.array.album_release_date);
-        String[] imageNames = context.getResources().getStringArray(R.array.album_image);
+//        int[] imageNames = context.getResources().getIntArray(R.array.album_image);
+        int[] imageNames = {R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground,
+                R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground,
+                R.drawable.ic_launcher_foreground};
         String[] descriptions = context.getResources().getStringArray(R.array.album_description);
 
         for (int i = 0; i < names.length; i++) {

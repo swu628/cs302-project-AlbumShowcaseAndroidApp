@@ -3,7 +3,7 @@
 
 <!--    Album names     -->
     <string-array name = "album_names">
-        <item>New Jeans 1st EP \'New Jeans'</item>
+        <item>New Jeans 1st EP New Jeans</item>
         <item>THE ALBUM</item>
         <item>I NEVER DIE</item>
         <item>Love War</item>
@@ -38,13 +38,13 @@
     </string-array>
 
 <!--    Album image name   -->
-    <string-array name = "album_image">
-        <item>ic_launcher_background</item>
-        <item>ic_launcher_background</item>
-        <item>ic_launcher_background</item>
-        <item>ic_launcher_background</item>
-        <item>ic_launcher_background</item>
-    </string-array>
+<!--    <integer-array name = "album_image">-->
+<!--        <item>@drawable/ic_launcher_foreground</item>-->
+<!--        <item>@drawable/ic_launcher_foreground</item>-->
+<!--        <item>@drawable/ic_launcher_foreground</item>-->
+<!--        <item>@drawable/ic_launcher_foreground</item>-->
+<!--        <item>@drawable/ic_launcher_foreground</item>-->
+<!--    </integer-array>-->
 
 <!--    Album description   -->
     <string-array name = "album_description">
