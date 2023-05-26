@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--    Album names     -->
+    <string-array name = "album_names">
+        <item>New Jeans 1st EP \'New Jeans'</item>
+        <item>THE ALBUM</item>
+        <item>I NEVER DIE</item>
+        <item>Love War</item>
+        <item>BORN PINK</item>
+    </string-array>
+
+<!--    Album artists   -->
+    <string-array name = "album_artist">
+        <item>NewJeans</item>
+        <item>BLACKPINK</item>
+        <item>(G)I-DLE</item>
+        <item>YENA</item>
+        <item>BLACKPINK</item>
+    </string-array>
+
+<!--    Album category   -->
+    <string-array name = "album_category">
+        <item>girl group</item>
+        <item>girl group</item>
+        <item>girl group</item>
+        <item>girl group</item>
+        <item>girl group</item>
+    </string-array>
+
+<!--    Album release date   -->
+    <string-array name = "album_release_date">
+        <item>01/08/22</item>
+        <item>02/10/20</item>
+        <item>12/03/22</item>
+        <item>17/01/23</item>
+        <item>16/09/22</item>
+    </string-array>
+
+<!--    Album image name   -->
+    <string-array name = "album_image">
+        <item>ic_launcher_background</item>
+        <item>ic_launcher_background</item>
+        <item>ic_launcher_background</item>
+        <item>ic_launcher_background</item>
+        <item>ic_launcher_background</item>
+    </string-array>
+
+<!--    Album description   -->
+    <string-array name = "album_description">
+        <item>Description</item>
+        <item>Description</item>
+        <item>Description</item>
+        <item>Description</item>
+        <item>Description</item>
+    </string-array>
+
+</resources>
