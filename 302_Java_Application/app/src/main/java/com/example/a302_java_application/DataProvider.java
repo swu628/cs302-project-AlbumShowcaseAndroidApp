@@ -10,6 +10,8 @@ public class DataProvider {
 
     private Context context;
 
+    private static ArrayList<Album> allAlbums;
+
     public DataProvider(Context context) {
 
         this.context = context;
@@ -39,6 +41,12 @@ public class DataProvider {
 
 //        Return list of albums
         return albumList;
+    }
+
+
+//    Update static list of all albums for ease of use for all activity classes
+    public static void updateAlbumList(ArrayList<Album> albumList) {
+        allAlbums = albumList;
     }
 
 }

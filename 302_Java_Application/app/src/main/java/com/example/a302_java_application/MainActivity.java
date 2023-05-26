@@ -17,13 +17,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//      Get the list of most viewed albums
-        this.mostViewed = getMostViewed();
-
-//      Create DataProvider to get albums
+//        Create DataProvider to get albums
         DataProvider dataProvider = new DataProvider(context);
-//      Get list of all albums and save to attribute
+//        Get list of all albums and save to attribute
         this.allAlbums = dataProvider.getAlbums();
+
+//        Update list of all albums for DataProvider class 
+        dataProvider.updateAlbumList(this.allAlbums);
+
+//        Get the list of most viewed albums
+        this.mostViewed = getMostViewed();
 
 
 
@@ -32,7 +35,11 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<Album> getMostViewed() {
 
         ArrayList<Album> mostViewed = new ArrayList<>();
+        ArrayList<Album> albumList = allAlbums;
 
+        for (int i = 0; i < 3; i++) {
+
+        }
 
         return mostViewed;
     }
