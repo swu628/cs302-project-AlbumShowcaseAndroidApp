@@ -7,12 +7,12 @@ public class Album {
     private String category;
     private String artist;
     private String description;
-    private String image;
+    private int image;
     private String releaseDate;
     private boolean liked;
     private int views;
 
-    public Album(String name, String category, String artist, String description, String image,
+    public Album(String name, String category, String artist, String description, int image,
                  String releaseDate, boolean liked, int views) {
         this.name = name;
         this.category = category;
@@ -40,8 +40,10 @@ public class Album {
         return description;
     }
 
+    public int getImage() { return image; }
+
     public String getReleaseDate() {
-        return releaseDate.toString();
+        return releaseDate;
     }
 
     public boolean isLiked() {
