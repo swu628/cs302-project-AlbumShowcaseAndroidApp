@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class SearchHistoryAdapter extends RecyclerView.Adapter<com.example.a302_java_application.RecyclerViewAdapter.RecyclerViewHolder> {
+public class SearchHistoryAdapter extends RecyclerView.Adapter<com.example.a302_java_application.SearchHistoryAdapter.SearchHistoryViewHolder> {
 
     ArrayList<String> searchHistory;
     Context context;
@@ -26,7 +26,7 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter<com.example.a302_
     }
 
     @Override
-    public com.example.a302_java_application.RecyclerViewAdapter.RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public com.example.a302_java_application.SearchHistoryAdapter.SearchHistoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
 //        Create inflater
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -34,11 +34,11 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter<com.example.a302_
         View view = inflater.inflate(R.layout.search_history_layout, parent, false);
 
 //        Return the ViewHolder
-        return new com.example.a302_java_application.RecyclerViewAdapter.RecyclerViewHolder(view);
+        return new com.example.a302_java_application.SearchHistoryAdapter.SearchHistoryViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull com.example.a302_java_application.RecyclerViewAdapter.RecyclerViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull com.example.a302_java_application.SearchHistoryAdapter.SearchHistoryViewHolder holder, int position) {
 
 //        Bind album data to layout defined by ViewHolder
         holder.name.setText(searchHistory.get(position));

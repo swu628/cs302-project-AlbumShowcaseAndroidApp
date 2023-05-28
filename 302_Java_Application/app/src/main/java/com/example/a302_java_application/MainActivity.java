@@ -1,12 +1,18 @@
 package com.example.a302_java_application;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -28,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         this.allAlbums = dataProvider.getAlbums();
 
 //        Update list of all albums for DataProvider class
-        dataProvider.updateAlbumList(this.allAlbums);
+        dataProvider.updateAlbumList(dataProvider.getAlbums());
 
 //        Get the list of most viewed albums
         this.mostViewed = getMostViewed();
@@ -42,10 +48,29 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
 //        Set up Search View
-        searchView = findViewById(R.id.main_search_bar);
-        searchView.clearFocus();
+//        this.searchView = findViewById(R.id.main_search_bar);
+//        searchView.clearFocus();
 
+//        Set up bottom navigation bar
+        BottomNavigationView bottomNavigationView = findViewById(R.id.home_bottom_bar);
+        bottomNavigationView.setSelectedItemId(R.id.bottom_home);
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+
+            if (item.getItemId() == R.id.bottom_home) {
+                return true;
+            } else if (item.getItemId() == R.id.bottom_browse) {
+                startActivity(new Intent(getApplicationContext(), BrowseActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
+            } else {
+                return false;
+            }
+
+        });
     }
+
 
     public ArrayList<Album> getAllAlbums() {
         return allAlbums;
