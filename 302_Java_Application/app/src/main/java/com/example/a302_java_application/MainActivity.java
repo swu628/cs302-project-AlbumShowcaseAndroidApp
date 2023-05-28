@@ -1,6 +1,7 @@
 package com.example.a302_java_application;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,8 +12,10 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<Album> allAlbums = new ArrayList<>();
-    ArrayList<Album> mostViewed = new ArrayList<>();
+    private ArrayList<Album> allAlbums = new ArrayList<>();
+    private ArrayList<Album> mostViewed = new ArrayList<>();
+
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
+//        Set up Search View
+        searchView = findViewById(R.id.main_search_bar);
+        searchView.clearFocus();
+
+    }
+
+    public ArrayList<Album> getAllAlbums() {
+        return allAlbums;
     }
 
     public ArrayList<Album> getMostViewed() {
@@ -72,4 +83,5 @@ public class MainActivity extends AppCompatActivity {
 
         return mostViewed;
     }
+
 }
