@@ -5,7 +5,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -13,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<Album> allAlbums = new ArrayList<>();
     ArrayList<Album> mostViewed = new ArrayList<>();
+
+    private Button button1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,13 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
+        button1 = (Button) findViewById(R.id.button1);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openListActivity();
+            }
+        });
     }
 
     public ArrayList<Album> getMostViewed() {
@@ -72,4 +85,11 @@ public class MainActivity extends AppCompatActivity {
 
         return mostViewed;
     }
+
+    // Open list activity when the category button is clicked
+    public void openListActivity() {
+        Intent intent = new Intent(this, ListActivity.class);
+        startActivity(intent);
+    }
+
 }
