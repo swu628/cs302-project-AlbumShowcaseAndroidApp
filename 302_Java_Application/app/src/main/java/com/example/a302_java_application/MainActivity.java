@@ -18,7 +18,9 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Album> allAlbums = new ArrayList<>();
     ArrayList<Album> mostViewed = new ArrayList<>();
 
-    private Button button1;
+    private Button girlGroup;
+    private Button boyGroup;
+    private Button soloist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +46,26 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        button1 = (Button) findViewById(R.id.button1);
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openListActivity();
+        girlGroup = (Button) findViewById(R.id.button1);
+        boyGroup = (Button) findViewById(R.id.button2);
+        soloist = (Button) findViewById(R.id.button3);
+
+        // Connect category buttons to list activity (using for loops to avoid duplicated code)
+        int i;
+        for (i=0; i<3; i++) {
+            Button temp;
+            if (i==0) {
+                temp = girlGroup;
+            } else if (i==1) {
+                temp = boyGroup;
+            } else {
+                temp = soloist;
             }
-        });
+            temp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {openListActivity();}
+            });
+        }
     }
 
     public ArrayList<Album> getMostViewed() {
