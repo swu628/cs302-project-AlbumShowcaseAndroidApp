@@ -43,15 +43,19 @@ public class ListActivity extends AppCompatActivity {
         // Get the list of albums to be displayed based on the chosen category
         // and change the heading based on the chosen category
         String buttonClicked = getIntent().getStringExtra("buttonClicked");
+        String query = getIntent().getStringExtra("query");
         if (buttonClicked.equals("Girl Group")) {
             this.categoryAlbums = getGirlGroupAlbums();
             albumCategoryText.setText("Girl Group Albums");
         } else if (buttonClicked.equals("Boy Group")) {
             this.categoryAlbums = getBoyGroupAlbums();
             albumCategoryText.setText("Boy Group Albums");
-        } else {
+        } else if (buttonClicked.equals("Soloist")) {
             this.categoryAlbums = getSoloistAlbums();
             albumCategoryText.setText("Soloist Albums");
+        } else {
+            this.categoryAlbums = getSearchResult(query);
+            albumCategoryText.setText("Search Results");
         }
 
 //        Create instance for recycler view
@@ -112,6 +116,25 @@ public class ListActivity extends AppCompatActivity {
         }
         return soloistAlbums;
     }
+
+    public ArrayList<Album> getSearchResult(String search) {
+
+//        Initialise list of search results and list of all albums
+        ArrayList<Album> searchResults = new ArrayList<>();
+        ArrayList<Album> albumList = this.allAlbums;
+
+//        Get a list of search results
+        int i;
+        for (i = 0; i < albumList.size(); i++) {
+            Album album = albumList.get(i);
+            if (album.getName().toUpperCase().contains(search.toUpperCase()) ||
+                    album.getArtist().toUpperCase().contains(search.toUpperCase())) {
+                searchResults.add(album);
+            }
+        }
+        return searchResults;
+    }
+
 
     public void setUpBottomNavBar() {
 

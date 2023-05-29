@@ -23,18 +23,41 @@ public class BrowseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse);
 
-//        Intent intent = getIntent();
-//        if (intent != null) {
-//            receiveSearched(intent.getStringArrayListExtra("searched"));
-//        }
+        Intent intent = getIntent();
+        if (intent.getStringArrayListExtra("searched") != null) {
+            receiveSearched(intent.getStringArrayListExtra("searched"));
+        }
 
 //        Set up search view for browse activity
         browseSearch = findViewById(R.id.browse_search_bar);
         browseSearch.clearFocus();
 
-//        Test recycler by adding some searches
-        updateHistory("XOXO");
-        updateHistory("Palette");
+        browseSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                updateHistory(query);
+
+//                  Create new intent
+                Intent intent = new Intent(BrowseActivity.this, ListActivity.class);
+//                Add extras to intent to pass search history from main to browse activity
+                intent.putExtra("buttonClicked", "Search Result");
+                intent.putExtra("query", query);
+//                  Open search results
+                startActivity(intent);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+
+        });
+
+////        Test recycler by adding some searches
+//        updateHistory("XOXO");
+//        updateHistory("Palette");
 
 //        Set up recycler view for list of search history
         setUpRecycler();
@@ -94,10 +117,10 @@ public class BrowseActivity extends AppCompatActivity {
         }
     }
 
-    public static void updateHistory(String album) {
+    public static void updateHistory(String search) {
 
 //        Add album to search history
-        searchHistory.add(album);
+        searchHistory.add(search);
     }
 
 

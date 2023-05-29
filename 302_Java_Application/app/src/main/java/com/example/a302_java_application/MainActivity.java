@@ -3,20 +3,13 @@ package com.example.a302_java_application;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.lifecycle.ViewModelProviderGetKt;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -54,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
 //        Set up recycler view for the most viewed albums
         setUpRecycler();
 
-        girlGroup = (Button) findViewById(R.id.button1);
-        boyGroup = (Button) findViewById(R.id.button2);
-        soloist = (Button) findViewById(R.id.button3);
+        girlGroup = findViewById(R.id.button1);
+        boyGroup = findViewById(R.id.button2);
+        soloist = findViewById(R.id.button3);
 
         // Connect category buttons to list activity (using for loops to avoid duplicated code)
         int i;
@@ -92,12 +85,14 @@ public class MainActivity extends AppCompatActivity {
 
 //                  Add query to search history
                   searched.add(query);
-                  Intent intent = new Intent(getApplicationContext(), ListActivity.class);
-                  intent.putExtra("result", "Search Result");
+//                  Create new intent
+                  Intent intent = new Intent(MainActivity.this, ListActivity.class);
+//                Add extras to intent to pass search history from main to browse activity
+                  intent.putExtra("buttonClicked", "Search Result");
+                  intent.putExtra("query", query);
 //                  Open search results
-                  openListActivity();
-                  finish();
-                  return false;
+                  startActivity(intent);
+                  return true;
               }
 
               @Override
@@ -110,9 +105,8 @@ public class MainActivity extends AppCompatActivity {
         setUpBottomNavBar();
     }
 
-
-    public ArrayList<Album> getAllAlbums() {
-        return allAlbums;
+    public void clearSearched() {
+        this.searched = new ArrayList<String>();
     }
 
     public void setUpRecycler() {
@@ -140,13 +134,14 @@ public class MainActivity extends AppCompatActivity {
             if (item.getItemId() == R.id.bottom_home) {
                 return true;
             } else if (item.getItemId() == R.id.bottom_browse) {
+
 //                Create new intent
-                Intent intent = new Intent(getApplicationContext(), BrowseActivity.class);
-//                Add extras to intent to pass search history from main to browse activity
-                intent.putStringArrayListExtra("searched", this.searched);
+                Intent intent = new Intent(MainActivity.this, BrowseActivity.class);
+                intent.putStringArrayListExtra("searched", searched);
+//                Clear search history from Main Activity
+                clearSearched();
                 startActivity(intent);
                 overridePendingTransition(0, 0);
-                finish();
                 return true;
             } else {
                 return false;
@@ -172,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
             views[i] = albumList.get(i).getViews();
         }
 
-//        Sort views from
+//        Sort views from least to most
         Arrays.sort(views);
 
 //        Find the albums with the most views and add to the list of most viewed albums
