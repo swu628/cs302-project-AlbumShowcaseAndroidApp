@@ -138,11 +138,10 @@ public class MainActivity extends AppCompatActivity {
 //                Create new intent
                 Intent intent = new Intent(MainActivity.this, BrowseActivity.class);
                 intent.putStringArrayListExtra("searched", searched);
-                startActivity(intent);
-//               Clear search history from Main Activity
+//                Clear search history from Main Activity
                 clearSearched();
+                startActivity(intent);
                 overridePendingTransition(0, 0);
-                finish();
                 return true;
             } else {
                 return false;
