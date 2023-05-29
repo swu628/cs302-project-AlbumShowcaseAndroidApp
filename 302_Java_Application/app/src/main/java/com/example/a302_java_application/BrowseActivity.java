@@ -23,9 +23,14 @@ public class BrowseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse);
 
+//        Intent intent = getIntent();
+//        if (intent != null) {
+//            receiveSearched(intent.getStringArrayListExtra("searched"));
+//        }
+
 //        Set up search view for browse activity
-//        browseSearch = findViewById(R.id.browse_search_bar);
-//        browseSearch.clearFocus();
+        browseSearch = findViewById(R.id.browse_search_bar);
+        browseSearch.clearFocus();
 
 //        Test recycler by adding some searches
         updateHistory("XOXO");
@@ -77,6 +82,16 @@ public class BrowseActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    public static void receiveSearched(ArrayList<String> searched) {
+
+        try {
+            for (int i = 0; i < searched.size(); i++){
+                updateHistory(searched.get(i));
+            }
+        } catch (Exception e) {
+        }
     }
 
     public static void updateHistory(String album) {
