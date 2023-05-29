@@ -6,6 +6,12 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -22,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Album> mostViewed = new ArrayList<>();
 
     private SearchView searchView;
+
+    private Button girlGroup;
+    private Button boyGroup;
+    private Button soloist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +56,27 @@ public class MainActivity extends AppCompatActivity {
 //        Set adapter and layout manager for the recycler view
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        girlGroup = (Button) findViewById(R.id.button1);
+        boyGroup = (Button) findViewById(R.id.button2);
+        soloist = (Button) findViewById(R.id.button3);
+
+        // Connect category buttons to list activity (using for loops to avoid duplicated code)
+        int i;
+        for (i=0; i<3; i++) {
+            Button temp;
+            if (i==0) {
+                temp = girlGroup;
+            } else if (i==1) {
+                temp = boyGroup;
+            } else {
+                temp = soloist;
+            }
+            temp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {openListActivity();}
+            });
+        }
 
 //        Set up Search View
 //        this.searchView = findViewById(R.id.main_search_bar);
@@ -107,6 +138,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return mostViewed;
+    }
+
+    // Open list activity when the category button is clicked
+    public void openListActivity() {
+        Intent intent = new Intent(this, ListActivity.class);
+        startActivity(intent);
     }
 
 }
