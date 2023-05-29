@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
 //        Open required activities when items clicked
         bottomNavigationView.setOnItemSelectedListener(item -> {
 
+//            Start respective activities when different items are clicked
             if (item.getItemId() == R.id.bottom_home) {
                 return true;
             } else if (item.getItemId() == R.id.bottom_browse) {
@@ -119,8 +120,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-    }
 
+    }
     public ArrayList<Album> getMostViewed() {
 
 //        Initialise list of most viewed albums and list of all albums
