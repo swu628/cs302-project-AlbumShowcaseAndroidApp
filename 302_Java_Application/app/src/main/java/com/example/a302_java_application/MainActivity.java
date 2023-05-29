@@ -87,8 +87,9 @@ public class MainActivity extends AppCompatActivity {
                   searched.add(query);
 //                  Create new intent
                   Intent intent = new Intent(MainActivity.this, ListActivity.class);
-//                Add extras to intent to pass search history from main to browse activity
+//                  Add extra to pass query to ListActivity
                   intent.putExtra("buttonClicked", "Search Result");
+//                  Add extras to intent to pass search history from main to browse activity
                   intent.putExtra("query", query);
 //                  Open search results
                   startActivity(intent);
@@ -137,9 +138,11 @@ public class MainActivity extends AppCompatActivity {
 
 //                Create new intent
                 Intent intent = new Intent(MainActivity.this, BrowseActivity.class);
+//                Send list of search history to BrowseActivity
                 intent.putStringArrayListExtra("searched", searched);
 //                Clear search history from Main Activity
                 clearSearched();
+//                Open BrowseActivity
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
