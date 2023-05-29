@@ -15,7 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerListInterface {
 
     private ArrayList<Album> allAlbums = new ArrayList<>();
     private ArrayList<Album> mostViewed = new ArrayList<>();
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 //        Create instance for recycler view
         RecyclerView recyclerView = findViewById(R.id.most_views_recycler);
 //        Create instance for adapter for recycler view
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this.mostViewed, this);
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this.mostViewed, this, this);
 //        Set adapter and layout manager for the recycler view
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -186,5 +186,23 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return mostViewed;
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
+        // Initialise intent
+        Intent intent = new Intent(this, DetailsActivity.class);
+
+        // Pass the variables to another activity
+        intent.putExtra("name", allAlbums.get(position).getName());
+        intent.putExtra("artist", allAlbums.get(position).getArtist());
+        intent.putExtra("image", allAlbums.get(position).getImage());
+        intent.putExtra("releaseDate", allAlbums.get(position).getReleaseDate());
+        intent.putExtra("description", allAlbums.get(position).getDescription());
+
+        // Switch activity
+        startActivity(intent);
+
     }
 }
