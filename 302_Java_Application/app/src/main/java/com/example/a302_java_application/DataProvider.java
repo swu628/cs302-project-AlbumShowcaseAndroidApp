@@ -14,7 +14,7 @@ public class DataProvider {
     static ArrayList<Album> allAlbums;
 
     int[] imageNames = {R.drawable.new_jeans, R.drawable.the_album,
-            R.drawable.i_never_die, R.drawable.love_war,
+            R.drawable.i_never_die, R.drawable.dalla_dalla,
             R.drawable.born_pink, R.drawable.shooting_star, R.drawable.bad_boy,
             R.drawable.psycho, R.drawable.next_level, R.drawable.ive, R.drawable.seventeen_mini,
             R.drawable.candy, R.drawable.love_shot, R.drawable.hello_future, R.drawable.cherry_bomb,
