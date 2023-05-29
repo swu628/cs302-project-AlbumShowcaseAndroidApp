@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".DetailsActivity">
 
     <TextView
         android:id="@+id/album_detail"
@@ -20,14 +22,13 @@
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:layout_below="@id/album_detail"
-        android:layout_alignParentBottom="true"
-        >
+        android:layout_alignParentBottom="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.viewpager.widget.ViewPager
+            <androidx.viewpager2.widget.ViewPager2
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:id="@+id/pager"
@@ -44,17 +45,20 @@
                 android:contentDescription="Back"/>
 
             <ImageView
+                android:id="@+id/album_cover"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/new_jeans"
-                android:id="@+id/album_cover"
                 android:layout_below="@id/pager"
-                android:layout_margin="16dp"/>
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/new_jeans" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="16dp"
                 android:textSize="20sp"
                 android:id="@+id/album_name"
@@ -82,32 +86,40 @@
                 android:text="01 August 2022"/>
 
             <TextView
+                android:id="@+id/album_contain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/album_cover"
-                android:id="@+id/album_contain"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 android:text="This album contains: \n- OUT BOX \n-LOG BOOK
                 \n- PIN-UP BOOK \n- PHONING MANUAL BOOK \n- 1 CD \n- ID CARD
                 \n- STICKER PACK \n- PHOTOCARD \n- MINI POSTER"
-                android:layout_margin="16dp"
-                android:textSize="15sp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/album_contain"
-                android:text="Track list: \n1. Attention \n2. Hype Boy
-                \n3. Cookie \n4. Hurt"
-                android:id="@+id/album_song"
-                android:textSize="15sp"
-                android:layout_margin="16dp"/>
+                android:textSize="15sp" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/album_song"
+                android:layout_below="@id/album_contain"
                 android:text="Add to Favourites"
+                android:layout_margin="16dp"
                 />
+
+            <TextView
+                android:id="@+id/album_song"
+                android:visibility="invisible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/album_contain"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="Track list: \n1. Attention \n2. Hype Boy
+                \n3. Cookie \n4. Hurt"
+                android:textSize="15sp" />
 
         </RelativeLayout>
     </ScrollView>

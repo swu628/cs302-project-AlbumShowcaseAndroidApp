@@ -12,8 +12,11 @@ public class Album {
     private boolean liked;
     private int views;
 
+    int detailImage;
+
     public Album(String name, String category, String artist, String description, int image,
                  String releaseDate, boolean liked, int views) {
+                 //int detailImage) {
         this.name = name;
         this.category = category;
         this.artist = artist;
@@ -22,6 +25,10 @@ public class Album {
         this.releaseDate = releaseDate;
         this.liked = liked;
         this.views = views;
+    }
+
+    public Album(int detailImage) {
+        this.detailImage = detailImage;
     }
 
     public String getName() {
@@ -41,6 +48,8 @@ public class Album {
     }
 
     public int getImage() { return image; }
+
+    // public int getDetailImage() {return detailImage;}
 
     public String getReleaseDate() {
         return releaseDate;

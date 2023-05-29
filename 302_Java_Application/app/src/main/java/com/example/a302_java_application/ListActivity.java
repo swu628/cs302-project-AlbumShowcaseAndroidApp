@@ -14,7 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
-public class ListActivity extends AppCompatActivity {
+public class ListActivity extends AppCompatActivity implements RecyclerListInterface {
 
     ArrayList<Album> allAlbums = new ArrayList<>();
     private ArrayList<Album> categoryAlbums = new ArrayList<>();
@@ -24,6 +24,7 @@ public class ListActivity extends AppCompatActivity {
     // Use view holder later
     private TextView albumCategoryText;
     private ImageView back;
+    private int pos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +52,15 @@ public class ListActivity extends AppCompatActivity {
         if (buttonClicked.equals("Girl Group")) {
             this.categoryAlbums = getGirlGroupAlbums();
             albumCategoryText.setText("Girl Group Albums");
+            pos = 0;
         } else if (buttonClicked.equals("Boy Group")) {
             this.categoryAlbums = getBoyGroupAlbums();
             albumCategoryText.setText("Boy Group Albums");
+            pos = 10;
         } else if (buttonClicked.equals("Soloist")) {
             this.categoryAlbums = getSoloistAlbums();
             albumCategoryText.setText("Soloist Albums");
+            pos = 20;
         } else {
             this.categoryAlbums = getSearchResult(searchHistory);
             albumCategoryText.setText("Search Results");
@@ -65,7 +69,7 @@ public class ListActivity extends AppCompatActivity {
 //        Create instance for recycler view
         RecyclerView recyclerList = findViewById(R.id.list_recycler);
 //        Create instance for adapter for recycler view
-        RecyclerListAdapter recyclerListAdapter = new RecyclerListAdapter(this.categoryAlbums, this);
+        RecyclerListAdapter recyclerListAdapter = new RecyclerListAdapter(this.categoryAlbums, this, this);
 //        Set adapter and layout manager for the recycler view
         recyclerList.setAdapter(recyclerListAdapter);
         recyclerList.setLayoutManager(new LinearLayoutManager(this));
@@ -173,5 +177,22 @@ public class ListActivity extends AppCompatActivity {
 
         });
 
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        // Initialise intent
+        Intent intent = new Intent(this, DetailsActivity.class);
+
+        // Pass the variables to another activity
+        intent.putExtra("name", allAlbums.get(position + pos).getName());
+        intent.putExtra("artist", allAlbums.get(position + pos).getArtist());
+        intent.putExtra("image", allAlbums.get(position + pos).getImage());
+        intent.putExtra("releaseDate", allAlbums.get(position + pos).getReleaseDate());
+        intent.putExtra("description", allAlbums.get(position + pos).getDescription());
+        intent.putExtra("position", position + pos);
+
+        // Switch activity
+        startActivity(intent);
     }
 }
