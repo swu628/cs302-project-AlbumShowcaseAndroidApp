@@ -127,7 +127,8 @@ public class ListActivity extends AppCompatActivity {
         int i;
         for (i = 0; i < albumList.size(); i++) {
             Album album = albumList.get(i);
-            if (album.getName().contains(search) || album.getArtist().contains(search)) {
+            if (album.getName().toUpperCase().contains(search.toUpperCase()) ||
+                    album.getArtist().toUpperCase().contains(search.toUpperCase())) {
                 searchResults.add(album);
             }
         }

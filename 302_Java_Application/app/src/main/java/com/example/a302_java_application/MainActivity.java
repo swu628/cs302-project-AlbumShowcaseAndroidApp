@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
             views[i] = albumList.get(i).getViews();
         }
 
-//        Sort views from
+//        Sort views from least to most
         Arrays.sort(views);
 
 //        Find the albums with the most views and add to the list of most viewed albums
