@@ -13,6 +13,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.TextView;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -66,7 +71,14 @@ public class MainActivity extends AppCompatActivity {
             }
             temp.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {openListActivity();}
+                // Open list activity when the category button is clicked and pass the text appear on
+                // the clicked button
+                public void onClick(View v) {
+                    String buttonClicked = temp.getText().toString();
+                    Intent intent = new Intent(MainActivity.this, ListActivity.class);
+                    intent.putExtra("buttonClicked", buttonClicked);
+                    startActivity(intent);
+                }
             });
         }
 
@@ -178,11 +190,4 @@ public class MainActivity extends AppCompatActivity {
 
         return mostViewed;
     }
-
-    // Open list activity when the category button is clicked
-    public void openListActivity() {
-        Intent intent = new Intent(this, ListActivity.class);
-        startActivity(intent);
-    }
-
 }
