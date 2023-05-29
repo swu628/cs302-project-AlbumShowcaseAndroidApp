@@ -44,7 +44,6 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
         holder.image.setImageResource(albums.get(position).getImage());
         holder.artist.setText(albums.get(position).getArtist());
         holder.releaseDate.setText(albums.get(position).getReleaseDate());
-
     }
 
     @Override

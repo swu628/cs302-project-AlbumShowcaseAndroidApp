@@ -1,8 +1,6 @@
 package com.example.a302_java_application;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -23,6 +21,7 @@ public class DataProvider {
             R.drawable.lalisa, R.drawable.palette, R.drawable.birthday, R.drawable.the_weekend,
             R.drawable.delight, R.drawable.love_poem, R.drawable.love_war};
 
+    // int[] detailsImageNames = {R.drawable.new_jeans_1, R.drawable.new_jeans_2, R.drawable.new_jeans_3};
 
     public DataProvider(Context context) {
 
@@ -40,7 +39,7 @@ public class DataProvider {
 //        int[] imageNames = {R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground,
 //                R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground,
 //                R.drawable.ic_launcher_foreground};
-        String[] descriptions = context.getResources().getStringArray(R.array.album_description);
+        String[] descriptions = context.getResources().getStringArray(R.array.album_introduction);
 
         for (int i = 0; i < names.length; i++) {
 
@@ -51,6 +50,7 @@ public class DataProvider {
 //            Create and add album item to list of albums
             Album newAlbum = new Album(names[i], categories[i], artists[i], descriptions[i],
                     imageNames[i], dates[i], false, randView);
+                    // detailsImageNames[i*3]);
             albumList.add(newAlbum);
         }
 
