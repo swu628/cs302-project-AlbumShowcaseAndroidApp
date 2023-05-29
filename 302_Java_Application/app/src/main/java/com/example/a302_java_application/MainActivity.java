@@ -148,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
                 if (currentAlbum.getViews() == mostView) {
                     mostViewed.add(currentAlbum);
                     albumList.remove(k);
+                    break;
                 }
             }
         }
