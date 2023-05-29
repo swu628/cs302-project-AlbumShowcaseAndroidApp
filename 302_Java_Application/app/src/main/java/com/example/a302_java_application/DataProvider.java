@@ -39,7 +39,7 @@ public class DataProvider {
 //        int[] imageNames = {R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground,
 //                R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground,
 //                R.drawable.ic_launcher_foreground};
-        String[] descriptions = context.getResources().getStringArray(R.array.album_introduction);
+        String[] descriptions = context.getResources().getStringArray(R.array.album_description);
 
         for (int i = 0; i < names.length; i++) {
 

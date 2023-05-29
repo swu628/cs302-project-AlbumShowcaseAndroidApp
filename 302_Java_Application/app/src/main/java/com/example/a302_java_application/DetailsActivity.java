@@ -26,6 +26,7 @@ public class DetailsActivity extends AppCompatActivity {
         String artist = getIntent().getStringExtra("artist");
         int image = getIntent().getIntExtra("image", 0);
         String releaseDate = getIntent().getStringExtra("releaseDate");
+        String description = getIntent().getStringExtra("description");
 
         // Get the ids from xml file
         back = (ImageView) findViewById(R.id.detailBack);
@@ -33,12 +34,14 @@ public class DetailsActivity extends AppCompatActivity {
         TextView artistTextView = (TextView) findViewById(R.id.group_name);
         ImageView imageView = (ImageView) findViewById(R.id.album_cover);
         TextView releaseDateTextView = (TextView) findViewById(R.id.release_date);
+        TextView descriptionTextView = (TextView) findViewById(R.id.album_contain);
 
         // Set value based on the item chosen
         nameTextView.setText(name);
         artistTextView.setText(artist);
         imageView.setImageResource(image);
         releaseDateTextView.setText(releaseDate);
+        descriptionTextView.setText(description);
 
          // Initiating view pager and get the images to be displayed
          viewPager = findViewById(R.id.pager);
