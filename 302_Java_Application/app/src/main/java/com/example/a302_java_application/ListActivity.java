@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -17,14 +19,18 @@ public class ListActivity extends AppCompatActivity {
     ArrayList<Album> allAlbums = new ArrayList<>();
     private ArrayList<Album> categoryAlbums = new ArrayList<>();
 
+    // Use view holder later
     private TextView albumCategoryText;
+    private ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        // Use view holder later
         albumCategoryText = (TextView) findViewById(R.id.group_category);
+        back = (ImageView) findViewById(R.id.detailBack);
 
 //        Create DataProvider to get albums
         DataProvider dataProvider = new DataProvider(this);
@@ -58,6 +64,14 @@ public class ListActivity extends AppCompatActivity {
 
 //        Set up the bottom navigation bar
         setUpBottomNavBar();
+
+        // Bring user back to the main activity when the back image is clicked
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     public ArrayList<Album> getGirlGroupAlbums() {
