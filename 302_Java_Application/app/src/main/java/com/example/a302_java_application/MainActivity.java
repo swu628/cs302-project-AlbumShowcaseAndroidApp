@@ -49,13 +49,8 @@ public class MainActivity extends AppCompatActivity {
 //        Get the list of most viewed albums
         this.mostViewed = getMostViewed();
 
-//        Create instance for recycler view
-        RecyclerView recyclerView = findViewById(R.id.most_views_recycler);
-//        Create instance for adapter for recycler view
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this.mostViewed, this);
-//        Set adapter and layout manager for the recycler view
-        recyclerView.setAdapter(recyclerViewAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+//        Set up recycler view for the most viewed albums
+        setUpRecycler();
 
         girlGroup = (Button) findViewById(R.id.button1);
         boyGroup = (Button) findViewById(R.id.button2);
@@ -82,10 +77,34 @@ public class MainActivity extends AppCompatActivity {
 //        this.searchView = findViewById(R.id.main_search_bar);
 //        searchView.clearFocus();
 
+//        Set up the bottom navigation bar
+        setUpBottomNavBar();
+    }
+
+
+    public ArrayList<Album> getAllAlbums() {
+        return allAlbums;
+    }
+
+    public void setUpRecycler() {
+
+//        Create instance for recycler view
+        RecyclerView recyclerView = findViewById(R.id.most_views_recycler);
+//        Create instance for adapter for recycler view
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this.mostViewed, this);
+//        Set adapter and layout manager for the recycler view
+        recyclerView.setAdapter(recyclerViewAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+    }
+
+    public void setUpBottomNavBar() {
+
 //        Set up bottom navigation bar
         BottomNavigationView bottomNavigationView = findViewById(R.id.home_bottom_bar);
         bottomNavigationView.setSelectedItemId(R.id.bottom_home);
 
+//        Open required activities when items clicked
         bottomNavigationView.setOnItemSelectedListener(item -> {
 
             if (item.getItemId() == R.id.bottom_home) {
@@ -100,11 +119,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-    }
-
-
-    public ArrayList<Album> getAllAlbums() {
-        return allAlbums;
     }
 
     public ArrayList<Album> getMostViewed() {

@@ -31,6 +31,21 @@ public class BrowseActivity extends AppCompatActivity {
         updateHistory("XOXO");
         updateHistory("Palette");
 
+//        Set up recycler view for list of search history
+        setUpRecycler();
+
+//        Set up the bottom navigation bar
+        setUpBottomNavBar();
+
+    }
+
+    public static ArrayList<String> getSearchHistory() {
+
+        return searchHistory;
+    }
+
+    public void setUpRecycler() {
+
 //        Create instance for recycler view
         RecyclerView recyclerView = findViewById(R.id.search_history_recycler);
 //        Create instance for adapter for recycler view
@@ -39,10 +54,15 @@ public class BrowseActivity extends AppCompatActivity {
         recyclerView.setAdapter(searchHistoryAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+    }
+
+    public void setUpBottomNavBar() {
+
 //        Set up bottom navigation bar
         BottomNavigationView bottomNavigationView = findViewById(R.id.browse_bottom_bar);
         bottomNavigationView.setSelectedItemId(R.id.bottom_browse);
 
+//        Open required activties when items clicked
         bottomNavigationView.setOnItemSelectedListener(item -> {
 
             if (item.getItemId() == R.id.bottom_home) {
@@ -57,12 +77,6 @@ public class BrowseActivity extends AppCompatActivity {
             }
 
         });
-
-    }
-
-    public static ArrayList<String> getSearchHistory() {
-
-        return searchHistory;
     }
 
     public static void updateHistory(String album) {

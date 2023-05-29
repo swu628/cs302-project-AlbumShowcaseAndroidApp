@@ -36,13 +36,21 @@ public class ListActivity extends AppCompatActivity {
         recyclerList.setAdapter(recyclerListAdapter);
         recyclerList.setLayoutManager(new LinearLayoutManager(this));
 
-        //        Set up bottom navigation bar
+//        Set up the bottom navigation bar
+        setUpBottomNavBar();
+
+    }
+
+    public void setUpBottomNavBar() {
+
+//        Set up bottom navigation bar
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation_bar);
 
+//        Open required activities when items clicked
         bottomNavigationView.setOnItemSelectedListener(item -> {
 
             if (item.getItemId() == R.id.bottom_home) {
-                startActivity(new Intent(getApplicationContext(), BrowseActivity.class));
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 overridePendingTransition(0, 0);
                 finish();
                 return true;
@@ -56,5 +64,6 @@ public class ListActivity extends AppCompatActivity {
             }
 
         });
+
     }
 }
