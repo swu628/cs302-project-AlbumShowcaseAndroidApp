@@ -62,7 +62,7 @@ public class BrowseActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.browse_bottom_bar);
         bottomNavigationView.setSelectedItemId(R.id.bottom_browse);
 
-//        Open required activties when items clicked
+//        Open required activities when items clicked
         bottomNavigationView.setOnItemSelectedListener(item -> {
 
             if (item.getItemId() == R.id.bottom_home) {
@@ -85,40 +85,5 @@ public class BrowseActivity extends AppCompatActivity {
         searchHistory.add(album);
     }
 
-    public void setupRecyclerView() {
-
-//        Create instance for recycler view
-        RecyclerView recyclerView = findViewById(R.id.search_history_recycler);
-//        Create instance for adapter for recycler view
-        SearchHistoryAdapter searchHistoryAdapter = new SearchHistoryAdapter(searchHistory, this);
-//        Set adapter and layout manager for the recycler view
-        recyclerView.setAdapter(searchHistoryAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-    }
-
-    public void setupBottomNavBar() {
-
-        //        Set up bottom navigation bar
-        BottomNavigationView bottomNavigationView = findViewById(R.id.browse_bottom_bar);
-        bottomNavigationView.setSelectedItemId(R.id.bottom_browse);
-
-//        Define what happens when an menu item is clicked
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-
-//            Start respective activities when different items are clicked
-            if (item.getItemId() == R.id.bottom_home) {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                overridePendingTransition(0, 0);
-                finish();
-                return true;
-            } else if (item.getItemId() == R.id.bottom_browse) {
-                return true;
-            } else {
-                return false;
-            }
-
-        });
-    }
 
 }
