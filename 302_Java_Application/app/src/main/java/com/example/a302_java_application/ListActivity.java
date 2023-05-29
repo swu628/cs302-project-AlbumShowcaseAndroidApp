@@ -14,7 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
-public class ListActivity extends AppCompatActivity {
+public class ListActivity extends AppCompatActivity implements RecyclerListInterface {
 
     ArrayList<Album> allAlbums = new ArrayList<>();
     private ArrayList<Album> categoryAlbums = new ArrayList<>();
@@ -65,13 +65,13 @@ public class ListActivity extends AppCompatActivity {
 //        Create instance for recycler view
         RecyclerView recyclerList = findViewById(R.id.list_recycler);
 //        Create instance for adapter for recycler view
-        RecyclerListAdapter recyclerListAdapter = new RecyclerListAdapter(this.categoryAlbums, this);
+        RecyclerListAdapter recyclerListAdapter = new RecyclerListAdapter(this.categoryAlbums, this, this);
 //        Set adapter and layout manager for the recycler view
         recyclerList.setAdapter(recyclerListAdapter);
         recyclerList.setLayoutManager(new LinearLayoutManager(this));
 
 //        Set up the bottom navigation bar
-        setUpBottomNavBar();
+        // setUpBottomNavBar();
 
         // Bring user back to the main activity when the back image is clicked
         back.setOnClickListener(new View.OnClickListener() {
@@ -172,6 +172,13 @@ public class ListActivity extends AppCompatActivity {
             }
 
         });
+
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(this, DetailsActivity.class);
+        startActivity(intent);
 
     }
 }
