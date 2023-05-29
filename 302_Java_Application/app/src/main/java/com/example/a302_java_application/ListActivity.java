@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -16,10 +17,14 @@ public class ListActivity extends AppCompatActivity {
     ArrayList<Album> allAlbums = new ArrayList<>();
     private ArrayList<Album> categoryAlbums = new ArrayList<>();
 
+    private TextView albumCategoryText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+
+        albumCategoryText = (TextView) findViewById(R.id.group_category);
 
 //        Create DataProvider to get albums
         DataProvider dataProvider = new DataProvider(this);
@@ -30,13 +35,17 @@ public class ListActivity extends AppCompatActivity {
         dataProvider.updateAlbumList(this.allAlbums);
 
         // Get the list of albums to be displayed based on the chosen category
+        // and change the heading based on the chosen category
         String buttonClicked = getIntent().getStringExtra("buttonClicked");
         if (buttonClicked.equals("Girl Group")) {
             this.categoryAlbums = getGirlGroupAlbums();
+            albumCategoryText.setText("Girl Group Albums");
         } else if (buttonClicked.equals("Boy Group")) {
             this.categoryAlbums = getBoyGroupAlbums();
+            albumCategoryText.setText("Boy Group Albums");
         } else {
             this.categoryAlbums = getSoloistAlbums();
+            albumCategoryText.setText("Soloist Albums");
         }
 
 //        Create instance for recycler view
