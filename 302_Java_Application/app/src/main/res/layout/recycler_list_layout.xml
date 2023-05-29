@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        app:cardBackgroundColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="110dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_height="110dp"
+                android:id="@+id/album_cover"
+                android:src="@drawable/next_level"
+                android:padding="10dp"
+                android:contentDescription="Album Cover"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="aespa"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/group_name"
+                android:layout_toEndOf="@+id/album_cover"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NEXT LEVEL"
+                android:textSize="16sp"
+                android:id="@+id/album_name"
+                android:layout_below="@id/group_name"
+                android:layout_toEndOf="@+id/album_cover"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="17 May 2021"
+                android:textSize="16sp"
+                android:id="@+id/release_date"
+                android:layout_below="@id/album_name"
+                android:layout_toEndOf="@id/album_cover"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/album_cover"
+                android:layout_below="@id/release_date"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/heart_fill"
+                android:contentDescription="Favourite"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

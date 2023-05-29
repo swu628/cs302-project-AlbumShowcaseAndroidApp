@@ -10,16 +10,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder>{
+public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapter.RecyclerListHolder> {
+
 
     ArrayList<Album> albums;
     Context context;
 
-    public RecyclerViewAdapter (ArrayList<Album> albums, Context context) {
+    public RecyclerListAdapter (ArrayList<Album> albums, Context context) {
 
         this.albums = albums;
         this.context = context;
@@ -27,23 +26,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public RecyclerViewAdapter.RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerListAdapter.RecyclerListHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
 //        Create inflater
         LayoutInflater inflater = LayoutInflater.from(context);
 //        Create view
-        View view = inflater.inflate(R.layout.recycler_item_layout, parent, false);
+        View view = inflater.inflate(R.layout.recycler_list_layout, parent, false);
 
 //        Return the ViewHolder
-        return new RecyclerViewAdapter.RecyclerViewHolder(view);
+        return new RecyclerListAdapter.RecyclerListHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewAdapter.RecyclerViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerListAdapter.RecyclerListHolder holder, int position) {
 
 //        Bind album data to layout defined by ViewHolder
         holder.name.setText(albums.get(position).getName());
         holder.image.setImageResource(albums.get(position).getImage());
+        holder.artist.setText(albums.get(position).getArtist());
+        holder.releaseDate.setText(albums.get(position).getReleaseDate());
 
     }
 
@@ -54,17 +55,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return albums.size();
     }
 
-    public static class RecyclerViewHolder extends RecyclerView.ViewHolder {
+    public static class RecyclerListHolder extends RecyclerView.ViewHolder {
 
         ImageView image;
         TextView name;
+        TextView artist, releaseDate;
 
-        public RecyclerViewHolder(@NonNull View itemView) {
+        public RecyclerListHolder(@NonNull View itemView) {
             super(itemView);
 
 //            Define the views in the layout we will be adapting
             image = itemView.findViewById(R.id.album_cover);
             name = itemView.findViewById(R.id.album_name);
+            artist = itemView.findViewById(R.id.group_name);
+            releaseDate = itemView.findViewById(R.id.release_date);
         }
     }
 }
