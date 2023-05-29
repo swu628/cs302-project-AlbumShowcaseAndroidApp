@@ -19,6 +19,8 @@ public class ListActivity extends AppCompatActivity {
     ArrayList<Album> allAlbums = new ArrayList<>();
     private ArrayList<Album> categoryAlbums = new ArrayList<>();
 
+    private String searchHistory;
+
     // Use view holder later
     private TextView albumCategoryText;
     private ImageView back;
@@ -43,7 +45,9 @@ public class ListActivity extends AppCompatActivity {
         // Get the list of albums to be displayed based on the chosen category
         // and change the heading based on the chosen category
         String buttonClicked = getIntent().getStringExtra("buttonClicked");
-        String query = getIntent().getStringExtra("query");
+        if (getIntent().getStringExtra("query") != null) {
+            searchHistory = getIntent().getStringExtra("query");
+        }
         if (buttonClicked.equals("Girl Group")) {
             this.categoryAlbums = getGirlGroupAlbums();
             albumCategoryText.setText("Girl Group Albums");
@@ -54,7 +58,7 @@ public class ListActivity extends AppCompatActivity {
             this.categoryAlbums = getSoloistAlbums();
             albumCategoryText.setText("Soloist Albums");
         } else {
-            this.categoryAlbums = getSearchResult(query);
+            this.categoryAlbums = getSearchResult(searchHistory);
             albumCategoryText.setText("Search Results");
         }
 
@@ -127,7 +131,8 @@ public class ListActivity extends AppCompatActivity {
         int i;
         for (i = 0; i < albumList.size(); i++) {
             Album album = albumList.get(i);
-            if (album.getName().contains(search) || album.getArtist().contains(search)) {
+            if (album.getName().toUpperCase().contains(search.toUpperCase()) ||
+                    album.getArtist().toUpperCase().contains(search.toUpperCase())) {
                 searchResults.add(album);
             }
         }
@@ -144,12 +149,21 @@ public class ListActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
 
             if (item.getItemId() == R.id.bottom_home) {
+//                Open new MainActivity
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 overridePendingTransition(0, 0);
                 finish();
                 return true;
             } else if (item.getItemId() == R.id.bottom_browse) {
-                startActivity(new Intent(getApplicationContext(), BrowseActivity.class));
+
+//                Create new intent
+                Intent intent = new Intent(ListActivity.this, BrowseActivity.class);
+//                Pass search history to BrowseActivity
+                if (searchHistory != null) {
+                    intent.putExtra("history", searchHistory);
+                }
+//                Open Browse Activity
+                startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
                 return true;

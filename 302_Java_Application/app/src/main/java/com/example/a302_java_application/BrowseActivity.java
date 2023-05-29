@@ -23,9 +23,12 @@ public class BrowseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse);
 
+//        Recieve any search history from other activities
         Intent intent = getIntent();
         if (intent.getStringArrayListExtra("searched") != null) {
             receiveSearched(intent.getStringArrayListExtra("searched"));
+        } else if (intent.getStringExtra("history") != null) {
+            updateHistory(intent.getStringExtra("history"));
         }
 
 //        Set up search view for browse activity
@@ -37,6 +40,7 @@ public class BrowseActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
 
                 updateHistory(query);
+                setUpRecycler();
 
 //                  Create new intent
                 Intent intent = new Intent(BrowseActivity.this, ListActivity.class);
