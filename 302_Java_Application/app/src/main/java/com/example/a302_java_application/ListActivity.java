@@ -71,7 +71,7 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
         recyclerList.setLayoutManager(new LinearLayoutManager(this));
 
 //        Set up the bottom navigation bar
-        // setUpBottomNavBar();
+        setUpBottomNavBar();
 
         // Bring user back to the main activity when the back image is clicked
         back.setOnClickListener(new View.OnClickListener() {

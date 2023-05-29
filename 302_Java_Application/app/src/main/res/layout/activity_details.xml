@@ -22,14 +22,13 @@
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:layout_below="@id/album_detail"
-        android:layout_alignParentBottom="true"
-        >
+        android:layout_alignParentBottom="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.viewpager.widget.ViewPager
+            <androidx.viewpager2.widget.ViewPager2
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:id="@+id/pager"
