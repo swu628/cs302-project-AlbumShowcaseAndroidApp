@@ -24,6 +24,7 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
     // Use view holder later
     private TextView albumCategoryText;
     private ImageView back;
+    private int pos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +52,15 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
         if (buttonClicked.equals("Girl Group")) {
             this.categoryAlbums = getGirlGroupAlbums();
             albumCategoryText.setText("Girl Group Albums");
+            pos = 0;
         } else if (buttonClicked.equals("Boy Group")) {
             this.categoryAlbums = getBoyGroupAlbums();
             albumCategoryText.setText("Boy Group Albums");
+            pos = 10;
         } else if (buttonClicked.equals("Soloist")) {
             this.categoryAlbums = getSoloistAlbums();
             albumCategoryText.setText("Soloist Albums");
+            pos = 20;
         } else {
             this.categoryAlbums = getSearchResult(searchHistory);
             albumCategoryText.setText("Search Results");
@@ -177,8 +181,16 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
 
     @Override
     public void onItemClick(int position) {
+        // Initialise intent
         Intent intent = new Intent(this, DetailsActivity.class);
-        startActivity(intent);
 
+        // Pass the variables to another activity
+        intent.putExtra("name", allAlbums.get(position + pos).getName());
+        intent.putExtra("artist", allAlbums.get(position + pos).getArtist());
+        intent.putExtra("image", allAlbums.get(position + pos).getImage());
+        intent.putExtra("releaseDate", allAlbums.get(position + pos).getReleaseDate());
+
+        // Switch activity
+        startActivity(intent);
     }
 }
