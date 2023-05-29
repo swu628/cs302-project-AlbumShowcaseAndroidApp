@@ -49,13 +49,35 @@ public class MainActivity extends AppCompatActivity {
 //        Get the list of most viewed albums
         this.mostViewed = getMostViewed();
 
-//        Create instance for recycler view
+//        Set up recycler view for most viewed albums
+        setupRecyclerView();
+
+//        Set up bottom navigation bar
+        setupBottomNavBar();
+
+//        Set up Search View
+//        this.searchView = findViewById(R.id.main_search_bar);
+//        searchView.clearFocus();
+
+    }
+
+
+    public ArrayList<Album> getAllAlbums() {
+        return allAlbums;
+    }
+
+    public void setupRecyclerView() {
+        //        Create instance for recycler view
         RecyclerView recyclerView = findViewById(R.id.most_views_recycler);
 //        Create instance for adapter for recycler view
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this.mostViewed, this);
 //        Set adapter and layout manager for the recycler view
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+    }
+
+
+    public void setupBottomNavBar() {
 
         girlGroup = (Button) findViewById(R.id.button1);
         boyGroup = (Button) findViewById(R.id.button2);
@@ -82,12 +104,15 @@ public class MainActivity extends AppCompatActivity {
 //        this.searchView = findViewById(R.id.main_search_bar);
 //        searchView.clearFocus();
 
+
 //        Set up bottom navigation bar
         BottomNavigationView bottomNavigationView = findViewById(R.id.home_bottom_bar);
         bottomNavigationView.setSelectedItemId(R.id.bottom_home);
 
+//        Define what happens when an item is clicked
         bottomNavigationView.setOnItemSelectedListener(item -> {
 
+//            Start respective activities when different items are clicked
             if (item.getItemId() == R.id.bottom_home) {
                 return true;
             } else if (item.getItemId() == R.id.bottom_browse) {
@@ -100,13 +125,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
     }
-
-
-    public ArrayList<Album> getAllAlbums() {
-        return allAlbums;
-    }
-
     public ArrayList<Album> getMostViewed() {
 
 //        Initialise list of most viewed albums and list of all albums
