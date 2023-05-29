@@ -2,6 +2,7 @@
 <!--You can change the ViewGroup by just changing the ViewGroup name, do not change the attributes
 that follows-->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/home_page"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -107,16 +108,20 @@ that follows-->
         app:layout_constraintVertical_bias="0.0" />
 
     <SearchView
+        android:id="@+id/main_search_bar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@drawable/search_view"
+        android:queryHint="@string/search_hint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.087" />
+        app:layout_constraintVertical_bias="0.08" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/home_bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@color/bottom_bar"
