@@ -3,6 +3,7 @@ package com.example.a302_java_application;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.lifecycle.ViewModelProviderGetKt;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,12 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,8 +23,9 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Album> allAlbums = new ArrayList<>();
     private ArrayList<Album> mostViewed = new ArrayList<>();
 
-    private SearchView searchView;
+    private ArrayList<String> searched = new ArrayList<>();
 
+    private SearchView searchView;
     private Button girlGroup;
     private Button boyGroup;
     private Button soloist;
@@ -41,13 +38,13 @@ public class MainActivity extends AppCompatActivity {
 //        Create DataProvider to get albums
         DataProvider dataProvider = new DataProvider(this);
 //        Get list of all albums and save to attribute
-        this.allAlbums = dataProvider.getAlbums();
+        allAlbums = dataProvider.getAlbums();
 
 //        Update list of all albums for DataProvider class
         dataProvider.updateAlbumList(dataProvider.getAlbums());
 
 //        Get the list of most viewed albums
-        this.mostViewed = getMostViewed();
+        mostViewed = getMostViewed();
 
 //        Set up recycler view for the most viewed albums
         setUpRecycler();
@@ -74,8 +71,28 @@ public class MainActivity extends AppCompatActivity {
         }
 
 //        Set up Search View
-//        this.searchView = findViewById(R.id.main_search_bar);
-//        searchView.clearFocus();
+          searchView = findViewById(R.id.main_search_bar);
+          searchView.clearFocus();
+
+          searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+              @Override
+              public boolean onQueryTextSubmit(String query) {
+
+//                  Add query to search history
+                  searched.add(query);
+                  Intent intent = new Intent(getApplicationContext(), ListActivity.class);
+                  intent.putExtra("result", "Search Result");
+//                  Open search results
+                  openListActivity();
+                  finish();
+                  return false;
+              }
+
+              @Override
+              public boolean onQueryTextChange(String newText) {
+                  return false;
+              }
+          });
 
 //        Set up the bottom navigation bar
         setUpBottomNavBar();
@@ -111,7 +128,11 @@ public class MainActivity extends AppCompatActivity {
             if (item.getItemId() == R.id.bottom_home) {
                 return true;
             } else if (item.getItemId() == R.id.bottom_browse) {
-                startActivity(new Intent(getApplicationContext(), BrowseActivity.class));
+//                Create new intent
+                Intent intent = new Intent(getApplicationContext(), BrowseActivity.class);
+//                Add extras to intent to pass search history from main to browse activity
+                intent.putStringArrayListExtra("searched", this.searched);
+                startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
                 return true;
@@ -122,6 +143,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+//    Gets the list of most viewed albums from the list of all albums
     public ArrayList<Album> getMostViewed() {
 
 //        Initialise list of most viewed albums and list of all albums

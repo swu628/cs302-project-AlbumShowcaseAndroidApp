@@ -30,13 +30,15 @@
         android:layout_below="@id/browse_search_bar"
         android:layout_margin="16dp"/>
 
-    <SearchView
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/browse_search_bar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/search_view"
         android:queryHint="@string/search_hint"
-        android:layout_below="@id/top_browse"/>
+        android:layout_below="@id/top_browse"
+        app:queryHint="Search"
+        app:iconifiedByDefault="false"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_history_recycler"
