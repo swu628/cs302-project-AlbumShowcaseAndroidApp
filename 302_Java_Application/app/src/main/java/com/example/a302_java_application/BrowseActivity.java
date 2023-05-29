@@ -23,6 +23,7 @@ public class BrowseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse);
 
+//        Recieve any search history from the MainActivity
         Intent intent = getIntent();
         if (intent.getStringArrayListExtra("searched") != null) {
             receiveSearched(intent.getStringArrayListExtra("searched"));
@@ -32,17 +33,18 @@ public class BrowseActivity extends AppCompatActivity {
         browseSearch = findViewById(R.id.browse_search_bar);
         browseSearch.clearFocus();
 
+//        Set up search function
         browseSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
+//                Add the current query to the search history
                 updateHistory(query);
 
 //                  Create new intent
                 Intent intent = new Intent(BrowseActivity.this, ListActivity.class);
-//                Add extras to intent to pass search history from main to browse activity
+//                Add extras to intent to pass search query to ListActivity
                 intent.putExtra("buttonClicked", "Search Result");
-                intent.putExtra("query", query);
 //                  Open search results
                 startActivity(intent);
                 return true;
