@@ -45,17 +45,20 @@
                 android:contentDescription="Back"/>
 
             <ImageView
+                android:id="@+id/album_cover"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/new_jeans"
-                android:id="@+id/album_cover"
                 android:layout_below="@id/pager"
-                android:layout_margin="16dp"/>
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/new_jeans" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="16dp"
                 android:textSize="20sp"
                 android:id="@+id/album_name"
@@ -96,8 +99,17 @@
                 \n- STICKER PACK \n- PHOTOCARD \n- MINI POSTER"
                 android:textSize="15sp" />
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/album_contain"
+                android:text="Add to Favourites"
+                android:layout_margin="16dp"
+                />
+
             <TextView
                 android:id="@+id/album_song"
+                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/album_contain"
@@ -108,14 +120,6 @@
                 android:text="Track list: \n1. Attention \n2. Hype Boy
                 \n3. Cookie \n4. Hurt"
                 android:textSize="15sp" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/album_song"
-                android:text="Add to Favourites"
-                android:layout_margin="16dp"
-                />
 
         </RelativeLayout>
     </ScrollView>

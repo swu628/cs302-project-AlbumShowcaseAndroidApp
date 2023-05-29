@@ -190,6 +190,7 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
         intent.putExtra("image", allAlbums.get(position + pos).getImage());
         intent.putExtra("releaseDate", allAlbums.get(position + pos).getReleaseDate());
         intent.putExtra("description", allAlbums.get(position + pos).getDescription());
+        intent.putExtra("position", position + pos);
 
         // Switch activity
         startActivity(intent);
