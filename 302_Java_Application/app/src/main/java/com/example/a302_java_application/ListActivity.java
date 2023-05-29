@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
@@ -32,5 +35,26 @@ public class ListActivity extends AppCompatActivity {
 //        Set adapter and layout manager for the recycler view
         recyclerList.setAdapter(recyclerListAdapter);
         recyclerList.setLayoutManager(new LinearLayoutManager(this));
+
+        //        Set up bottom navigation bar
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navigation_bar);
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+
+            if (item.getItemId() == R.id.bottom_home) {
+                startActivity(new Intent(getApplicationContext(), BrowseActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
+            } else if (item.getItemId() == R.id.bottom_browse) {
+                startActivity(new Intent(getApplicationContext(), BrowseActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
+            } else {
+                return false;
+            }
+
+        });
     }
 }
