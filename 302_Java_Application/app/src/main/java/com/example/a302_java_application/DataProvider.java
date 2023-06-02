@@ -40,6 +40,8 @@ public class DataProvider {
 //                R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground,
 //                R.drawable.ic_launcher_foreground};
         String[] descriptions = context.getResources().getStringArray(R.array.album_description);
+        String[] tracklists = context.getResources().getStringArray(R.array.album_tracklist);
+        String[] contains = context.getResources().getStringArray(R.array.album_contain);
 
         for (int i = 0; i < names.length; i++) {
 
@@ -48,8 +50,8 @@ public class DataProvider {
             int randView = rand.nextInt(20);
 
 //            Create and add album item to list of albums
-            Album newAlbum = new Album(names[i], categories[i], artists[i], descriptions[i],
-                    imageNames[i], dates[i], false, randView);
+            Album newAlbum = new Album(names[i], categories[i], artists[i], descriptions[i], tracklists[i],
+                    contains[i], imageNames[i], dates[i], false, randView);
                     // detailsImageNames[i*3]);
             albumList.add(newAlbum);
         }
