@@ -60,7 +60,7 @@ public class DetailsActivity extends AppCompatActivity {
                  R.drawable.fml_1, R.drawable.fml_2, R.drawable.fml_3,
                  R.drawable.candy_1, R.drawable.candy_2, R.drawable.candy_3,
                  R.drawable.love_shot_1, R.drawable.love_shot_2, R.drawable.love_shot_3,
-                 R.drawable.born_pink_1, R.drawable.born_pink_2, R.drawable.born_pink_3,
+                 R.drawable.hello_future_1, R.drawable.hello_future_2, R.drawable.hello_future_3,
                  R.drawable.born_pink_1, R.drawable.born_pink_2, R.drawable.born_pink_3,
                  R.drawable.born_pink_1, R.drawable.born_pink_2, R.drawable.born_pink_3,
                  R.drawable.born_pink_1, R.drawable.born_pink_2, R.drawable.born_pink_3,

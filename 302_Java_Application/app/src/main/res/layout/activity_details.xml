@@ -18,6 +18,16 @@
         android:textStyle="bold"
         android:layout_alignParentTop="true"/>
 
+    <ImageView
+        android:id="@+id/detailBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/back_background"
+        app:srcCompat="@drawable/back"
+        android:contentDescription="Back"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="500dp"
@@ -33,16 +43,6 @@
                 android:layout_height="200dp"
                 android:id="@+id/pager"
                 android:contentDescription="Images of the album"/>
-
-            <ImageView
-                android:id="@+id/detailBack"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/back_background"
-                app:srcCompat="@drawable/back"
-                android:contentDescription="Back"/>
 
             <ImageView
                 android:id="@+id/album_cover"
