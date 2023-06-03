@@ -25,6 +25,7 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
     private TextView albumCategoryText;
     private ImageView back;
     private int pos;
+    private boolean[] favourite = new boolean[30];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +74,8 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
 //        Set adapter and layout manager for the recycler view
         recyclerList.setAdapter(recyclerListAdapter);
         recyclerList.setLayoutManager(new LinearLayoutManager(this));
+
+        favourite = recyclerListAdapter.getFavouriteAlbums();
 
 //        Set up the bottom navigation bar
         setUpBottomNavBar();
@@ -172,7 +175,13 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
                 finish();
                 return true;
             } else {
-                return false;
+                Intent intent = new Intent(ListActivity.this, FavouritesActivity.class);
+                intent.putExtra("favourite", favourite);
+                intent.putExtra("pos", pos);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
             }
 
         });

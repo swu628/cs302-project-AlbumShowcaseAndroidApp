@@ -60,9 +60,10 @@
                 android:layout_toEndOf="@id/album_cover"/>
 
             <ImageButton
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignEnd="@id/group_name"
+                android:id="@+id/favourite"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="8dp"
