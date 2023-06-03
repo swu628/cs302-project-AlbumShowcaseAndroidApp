@@ -7,7 +7,6 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
         app:cardBackgroundColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,52 +20,55 @@
             <ImageView
                 android:layout_width="110dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="8dp"
                 android:layout_height="110dp"
                 android:id="@+id/album_cover"
                 android:src="@drawable/next_level"
-                android:padding="10dp"
+                android:padding="8dp"
                 android:contentDescription="Album Cover"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="aespa"
-                android:textSize="16sp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="16dp"
-                android:id="@+id/group_name"
-                android:layout_toEndOf="@+id/album_cover"/>
+                android:text="NEXT LEVEL"
+                android:textSize="20sp"
+                android:id="@+id/album_name"
+                android:layout_marginRight="70dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/album_cover"
+                android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="NEXT LEVEL"
-                android:textSize="16sp"
-                android:id="@+id/album_name"
-                android:layout_marginRight="16dp"
-                android:layout_below="@id/group_name"
-                android:layout_toEndOf="@+id/album_cover"/>
+                android:text="aespa"
+                android:textSize="20sp"
+                android:layout_marginRight="70dp"
+                android:id="@+id/group_name"
+                android:layout_toEndOf="@+id/album_cover"
+                android:layout_below="@id/album_name"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="17 May 2021"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:id="@+id/release_date"
-                android:layout_marginRight="16dp"
-                android:layout_below="@id/album_name"
+                android:layout_marginRight="70dp"
+                android:layout_marginBottom="8dp"
+                android:layout_below="@id/group_name"
                 android:layout_toEndOf="@id/album_cover"/>
 
             <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/album_cover"
-                android:layout_below="@id/release_date"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="16dp"
-                android:background="@drawable/heart_fill"
-                android:contentDescription="Favourite"/>
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignEnd="@id/group_name"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/heart_stroke"
+                android:contentDescription="Favourite" />
 
         </RelativeLayout>
 

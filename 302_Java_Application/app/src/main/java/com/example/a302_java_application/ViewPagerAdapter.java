@@ -34,7 +34,7 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewPagerAdapter.ViewHolder holder, int position) {
-        holder.image.setImageResource(albums.get(position).detailImage);
+        holder.image.setImageResource(albums.get(position).getDetailImage());
     }
 
     @Override

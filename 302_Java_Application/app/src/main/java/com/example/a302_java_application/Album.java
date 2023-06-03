@@ -7,20 +7,24 @@ public class Album {
     private String category;
     private String artist;
     private String description;
+    private String tracklist;
+    private String contain;
     private int image;
     private String releaseDate;
     private boolean liked;
     private int views;
 
-    int detailImage;
+    private int detailImage;
 
-    public Album(String name, String category, String artist, String description, int image,
-                 String releaseDate, boolean liked, int views) {
+    public Album(String name, String category, String artist, String description, String tracklist,
+                 String contain, int image, String releaseDate, boolean liked, int views) {
                  //int detailImage) {
         this.name = name;
         this.category = category;
         this.artist = artist;
         this.description = description;
+        this.tracklist = tracklist;
+        this.contain = contain;
         this.image = image;
         this.releaseDate = releaseDate;
         this.liked = liked;
@@ -46,6 +50,12 @@ public class Album {
     public String getDescription() {
         return description;
     }
+    public String getTracklist() {
+        return tracklist;
+    }
+    public String getContain() {
+        return contain;
+    }
 
     public int getImage() { return image; }
 
@@ -54,6 +64,8 @@ public class Album {
     public String getReleaseDate() {
         return releaseDate;
     }
+
+    public int getDetailImage() {return detailImage;};
 
     public boolean isLiked() {
         return liked;
