@@ -2,6 +2,7 @@ package com.example.a302_java_application;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.view.WindowCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,6 +25,7 @@ public class BrowseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse);
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
 
         // Recieve any search history from other activities
         Intent intent = getIntent();
@@ -32,6 +34,12 @@ public class BrowseActivity extends AppCompatActivity {
         } else if (intent.getStringExtra("history") != null) {
             updateHistory(intent.getStringExtra("history"));
         }
+
+        // Set up recycler view for list of search history
+        setUpRecycler();
+
+        // Set up the bottom navigation bar
+        setUpBottomNavBar();
 
         // Set up search view for browse activity
         browseSearch = findViewById(R.id.browse_search_bar);
@@ -52,9 +60,7 @@ public class BrowseActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
-                // Add the current query to the search history
-                updateHistory(query);
-                setUpRecycler();
+                browseSearch.setIconified(true);
 
                 // Create new intent
                 Intent intent = new Intent(BrowseActivity.this, ListActivity.class);
@@ -63,6 +69,10 @@ public class BrowseActivity extends AppCompatActivity {
                 intent.putExtra("query", query);
                 // Open search results
                 startActivity(intent);
+
+                // Add the current query to the search history
+                updateHistory(query);
+                setUpRecycler();
                 return true;
             }
 
@@ -72,16 +82,6 @@ public class BrowseActivity extends AppCompatActivity {
             }
 
         });
-
-        //// Test recycler by adding some searches
-        // updateHistory("XOXO");
-        // updateHistory("Palette");
-
-        // Set up recycler view for list of search history
-        setUpRecycler();
-
-        // Set up the bottom navigation bar
-        setUpBottomNavBar();
 
     }
 

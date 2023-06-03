@@ -10,15 +10,8 @@
 
     <TextView
         android:id="@+id/top_browse"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="@color/top_bar"
-        android:gravity="center"
         android:text="@string/browse_page"
-        android:textColor="@color/top_text"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_alignParentTop="true"/>
+        style="@style/top_bar"/>
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/browse_search_bar"
@@ -32,11 +25,7 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/browse_bottom_bar"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@color/bottom_bar"
-        app:menu="@menu/bottom_navigation"
-        android:layout_alignParentBottom="true"/>
+        style="@style/bottom_nav_bar"/>
 
     <ScrollView
         android:layout_width="fill_parent"

@@ -1,6 +1,7 @@
 package com.example.a302_java_application;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.WindowCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,6 +32,7 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
 
         // Use view holder later
         albumCategoryText = (TextView) findViewById(R.id.group_category);

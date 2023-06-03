@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerListInter
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
 
 //        Create DataProvider to get albums
         DataProvider dataProvider = new DataProvider(this);
@@ -100,13 +100,13 @@ public class MainActivity extends AppCompatActivity implements RecyclerListInter
               @Override
               public boolean onQueryTextSubmit(String query) {
 
+                  searchView.setIconified(true);
 //                  Add query to search history
                   searched.add(query);
 //                  Create new intent
                   Intent intent = new Intent(MainActivity.this, ListActivity.class);
 //                  Add extra to pass query to ListActivity
                   intent.putExtra("buttonClicked", "Search Result");
-//                  Add extras to intent to pass search history from main to browse activity
                   intent.putExtra("query", query);
 //                  Open search results
                   startActivity(intent);
