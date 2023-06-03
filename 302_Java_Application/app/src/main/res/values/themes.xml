@@ -5,6 +5,9 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
 
         <item name="android:statusBarColor" tools:targetApi="1">@color/top_bar</item>
+<!--        <item name="android:statusBarColor">@android:color/transparent</item>-->
+<!--        <item name="android:navigationBarColor">@android:color/transparent</item>-->
+
     </style>
 
     <style name="Theme.302_Java_Application" parent="Base.Theme.302_Java_Application" />
