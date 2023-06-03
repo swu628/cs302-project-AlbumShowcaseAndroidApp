@@ -1,5 +1,7 @@
 package com.example.a302_java_application;
 
+import static java.util.Arrays.fill;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.graphics.Insets;
@@ -24,13 +26,13 @@ public class MainActivity extends AppCompatActivity implements RecyclerListInter
 
     private ArrayList<Album> allAlbums = new ArrayList<>();
     private ArrayList<Album> mostViewed = new ArrayList<>();
-
     private ArrayList<String> searched = new ArrayList<>();
-
     private SearchView searchView;
     private Button girlGroup;
     private Button boyGroup;
     private Button soloist;
+    private int pos;
+    private boolean[] favourite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,16 @@ public class MainActivity extends AppCompatActivity implements RecyclerListInter
         girlGroup = findViewById(R.id.button1);
         boyGroup = findViewById(R.id.button2);
         soloist = findViewById(R.id.button3);
+
+        favourite = getIntent().getBooleanArrayExtra("favourite");
+        if (favourite==null) {
+            favourite = new boolean[30];
+            for (int i=0; i<30; i++) {
+                favourite[i] = false;
+            }
+        }
+        pos = getIntent().getIntExtra("pos", 0);
+
 
         // Connect category buttons to list activity (using for loops to avoid duplicated code)
         int i;
@@ -128,35 +140,49 @@ public class MainActivity extends AppCompatActivity implements RecyclerListInter
     }
 
     public void setUpBottomNavBar() {
-
-//        Set up bottom navigation bar
+        // Set up bottom navigation bar
         BottomNavigationView bottomNavigationView = findViewById(R.id.home_bottom_bar);
         bottomNavigationView.setSelectedItemId(R.id.bottom_home);
 
-//        Open required activities when items clicked
+        // Open required activities when items clicked
         bottomNavigationView.setOnItemSelectedListener(item -> {
-
-//            Start respective activities when different items are clicked
             if (item.getItemId() == R.id.bottom_home) {
                 return true;
-            } else if (item.getItemId() == R.id.bottom_browse) {
 
-//                Create new intent
+            } else if (item.getItemId() == R.id.bottom_browse) {
+                // Create new intent
                 Intent intent = new Intent(MainActivity.this, BrowseActivity.class);
-//                Send list of search history to BrowseActivity
+
+                // Send list of search history to BrowseActivity
                 intent.putStringArrayListExtra("searched", searched);
-//                Clear search history from Main Activity
+
+                // Clear search history from Main Activity
                 clearSearched();
-//                Open BrowseActivity
+
+                // Pass the favourite album to browse activity
+                intent.putExtra("favourite", favourite);
+                intent.putExtra("pos", pos);
+
+                // Open BrowseActivity
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 return true;
+
             } else {
-                return false;
+                // Create new intent
+                Intent intent = new Intent(MainActivity.this, FavouritesActivity.class);
+
+                // Pass the favourite album to browse activity
+                intent.putExtra("favourite", favourite);
+                intent.putExtra("pos", pos);
+
+                // Open favourite activity
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
             }
-
         });
-
     }
 
 //    Gets the list of most viewed albums from the list of all albums

@@ -71,6 +71,10 @@ public class Album {
         return liked;
     }
 
+    public void setLikedToTrue() {this.liked=true;}
+
+    public void setLikedToFalse() {this.liked=false;}
+
     public int getViews() { return views; }
 
     public void updateViews() {this.views++;}

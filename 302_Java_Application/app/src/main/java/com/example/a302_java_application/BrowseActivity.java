@@ -14,9 +14,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class BrowseActivity extends AppCompatActivity {
-    public static ArrayList<String> searchHistory = new ArrayList<>();
 
+    public static ArrayList<String> searchHistory = new ArrayList<>();
     private SearchView browseSearch;
+    private int pos;
+    private boolean[] favourite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,16 @@ public class BrowseActivity extends AppCompatActivity {
         // Set up search view for browse activity
         browseSearch = findViewById(R.id.browse_search_bar);
         browseSearch.clearFocus();
+
+        // Get a list of favourite albums
+        favourite = getIntent().getBooleanArrayExtra("favourite");
+        if (favourite==null) {
+            favourite = new boolean[30];
+            for (int i=0; i<30; i++) {
+                favourite[i] = false;
+            }
+        }
+        pos = getIntent().getIntExtra("pos", 0);
 
         // Set up search function
         browseSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -91,25 +103,36 @@ public class BrowseActivity extends AppCompatActivity {
     }
 
     public void setUpBottomNavBar() {
-
         // Set up bottom navigation bar
         BottomNavigationView bottomNavigationView = findViewById(R.id.browse_bottom_bar);
         bottomNavigationView.setSelectedItemId(R.id.bottom_browse);
 
         // Open required activities when items clicked
         bottomNavigationView.setOnItemSelectedListener(item -> {
-
             if (item.getItemId() == R.id.bottom_home) {
+                // Open main activity
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 overridePendingTransition(0, 0);
                 finish();
                 return true;
+
             } else if (item.getItemId() == R.id.bottom_browse) {
                 return true;
-            } else {
-                return false;
-            }
 
+            } else {
+                // Create new intent
+                Intent intent = new Intent(BrowseActivity.this, FavouritesActivity.class);
+
+                // Pass the favourite album to browse activity
+                intent.putExtra("favourite", favourite);
+                intent.putExtra("pos", pos);
+
+                // Open favourite activity
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
+            }
         });
     }
 
