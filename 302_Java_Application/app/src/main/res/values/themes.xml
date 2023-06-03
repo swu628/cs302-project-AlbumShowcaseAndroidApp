@@ -4,9 +4,36 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
 
-        <item name="android:statusBarColor" tools:targetApi="1">@color/top_bar</item>
-<!--        <item name="android:statusBarColor">@android:color/transparent</item>-->
-<!--        <item name="android:navigationBarColor">@android:color/transparent</item>-->
+<!--        <item name="android:statusBarColor" tools:targetApi="1">@color/top_bar</item>-->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+
+        <item name="fontFamily">sans-serif-light</item>
+
+
+    </style>
+
+    <style name="top_bar" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="fontFamily">sans-serif-light</item>
+        <item name="android:textSize">22dp</item>
+        <item name="android:textColor">@color/top_text</item>
+        <item name="android:background">@color/top_bar</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="bottom_nav_bar" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:background">@color/top_bar</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="menu">@menu/bottom_navigation</item>
+<!--        <item name="itemTextColor">@color/top_text</item>-->
 
     </style>
 

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:elevation="5dp"
-        app:cardElevation="10dp">
+        app:cardElevation="20dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -43,7 +43,8 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="12sp"
-                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-light"
+                android:layout_marginTop="8dp"
                 android:layout_below="@+id/album_cover_card"/>
 
         </RelativeLayout>
