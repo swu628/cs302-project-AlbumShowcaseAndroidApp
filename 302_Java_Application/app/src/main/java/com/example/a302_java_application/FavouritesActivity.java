@@ -17,7 +17,7 @@ public class FavouritesActivity extends AppCompatActivity implements RecyclerLis
     private ArrayList<Album> allAlbums = new ArrayList<>();
     private ArrayList<Album> favouriteAlbums = new ArrayList<>();
     private int pos;
-    private boolean[] favourite;
+    private boolean[] favourite = new boolean[30];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,31 +58,39 @@ public class FavouritesActivity extends AppCompatActivity implements RecyclerLis
     }
 
     public void setUpBottomNavBar() {
-
         // Set up bottom navigation bar
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation_bar);
 
         // Open required activities when items clicked
         bottomNavigationView.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.bottom_home) {
-                // Open new MainActivity
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                // Create new intent
+                Intent intent = new Intent(FavouritesActivity.this, MainActivity.class);
+                // Pass the favourite album to browse activity
+                intent.putExtra("favourite", favourite);
+                intent.putExtra("pos", pos);
+                // Open main activity
+                startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
                 return true;
+
             } else if (item.getItemId() == R.id.bottom_browse) {
                 // Create new intent
                 Intent intent = new Intent(FavouritesActivity.this, BrowseActivity.class);
+                // Pass the favourite album to browse activity
+                intent.putExtra("favourite", favourite);
+                intent.putExtra("pos", pos);
                 // Open Browse Activity
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
                 return true;
+
             } else {
                 return true;
             }
         });
-
     }
 
     @Override

@@ -84,6 +84,10 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(ListActivity.this, MainActivity.class);
+                intent.putExtra("favourite", favourite);
+                intent.putExtra("pos", pos);
+                startActivity(intent);
                 finish();
             }
         });
@@ -148,44 +152,59 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
 
 
     public void setUpBottomNavBar() {
-
-//        Set up bottom navigation bar
+        // Set up bottom navigation bar
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation_bar);
 
-//        Open required activities when items clicked
+        // Open required activities when items clicked
         bottomNavigationView.setOnItemSelectedListener(item -> {
-
             if (item.getItemId() == R.id.bottom_home) {
-//                Open new MainActivity
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                overridePendingTransition(0, 0);
-                finish();
-                return true;
-            } else if (item.getItemId() == R.id.bottom_browse) {
+                // Create new intent
+                Intent intent = new Intent(ListActivity.this, MainActivity.class);
 
-//                Create new intent
-                Intent intent = new Intent(ListActivity.this, BrowseActivity.class);
-//                Pass search history to BrowseActivity
-                if (searchHistory != null) {
-                    intent.putExtra("history", searchHistory);
-                }
-//                Open Browse Activity
+                // Pass the favourite album to main activity
+                intent.putExtra("favourite", favourite);
+                intent.putExtra("pos", pos);
+
+                // Open main activity
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
                 return true;
-            } else {
-                Intent intent = new Intent(ListActivity.this, FavouritesActivity.class);
+
+            } else if (item.getItemId() == R.id.bottom_browse) {
+                // Create new intent
+                Intent intent = new Intent(ListActivity.this, BrowseActivity.class);
+
+                // Pass search history to BrowseActivity
+                if (searchHistory != null) {
+                    intent.putExtra("history", searchHistory);
+                }
+
+                // Pass the favourite album to browse activity
                 intent.putExtra("favourite", favourite);
                 intent.putExtra("pos", pos);
+
+                // Open browse activity
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
+
+            } else {
+                // Create new intent
+                Intent intent = new Intent(ListActivity.this, FavouritesActivity.class);
+
+                // Pass the favourite album to browse activity
+                intent.putExtra("favourite", favourite);
+                intent.putExtra("pos", pos);
+
+                // Open favourite activity
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
                 return true;
             }
-
         });
-
     }
 
     @Override
