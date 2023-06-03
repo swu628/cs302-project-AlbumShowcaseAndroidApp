@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerListInter
 
     private ArrayList<Album> allAlbums = new ArrayList<>();
     private ArrayList<Album> mostViewed = new ArrayList<>();
-
     private ArrayList<String> searched = new ArrayList<>();
 
     private SearchView searchView;
@@ -88,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerListInter
               @Override
               public boolean onQueryTextSubmit(String query) {
 
+                  searchView.setIconified(true);
 //                  Add query to search history
                   searched.add(query);
 //                  Create new intent

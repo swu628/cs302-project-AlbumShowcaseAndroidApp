@@ -48,6 +48,8 @@ public class BrowseActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
+                browseSearch.setIconified(true);
+
                 // Create new intent
                 Intent intent = new Intent(BrowseActivity.this, ListActivity.class);
                 // Add extras to intent to pass search query to ListActivity

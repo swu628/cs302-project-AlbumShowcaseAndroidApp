@@ -79,45 +79,21 @@ that follows-->
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button3"
-                android:layout_width="295dp"
-                android:layout_height="70dp"
-                android:background="@drawable/category_button"
                 android:text="@string/solo"
-                android:textSize="16sp"
-                android:textAllCaps="false"
-                android:fontFamily="sans-serif-light"
                 android:layout_below="@+id/button2"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="16dp"
-                android:elevation="20dp" />
+                style="@style/category_buttons"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button2"
-                android:layout_width="295dp"
-                android:layout_height="70dp"
-                android:background="@drawable/category_button"
                 android:text="@string/boy_group"
-                android:textSize="16sp"
-                android:textAllCaps="false"
-                android:fontFamily="sans-serif-light"
                 android:layout_below="@id/button1"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="16dp"
-                android:elevation="20dp"/>
+                style="@style/category_buttons"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button1"
-                android:layout_width="295dp"
-                android:layout_height="68dp"
-                android:layout_below="@id/category_heading"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/category_button"
                 android:text="@string/girl_group"
-                android:textSize="16sp"
-                android:textAllCaps="false"
-                android:fontFamily="sans-serif-light"
-                android:elevation="20dp"/>
+                android:layout_below="@id/category_heading"
+                style="@style/category_buttons"/>
 
         </RelativeLayout>
 
