@@ -3,6 +3,9 @@ package com.example.a302_java_application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,12 +21,13 @@ public class FavouritesActivity extends AppCompatActivity implements RecyclerLis
     private ArrayList<Album> favouriteAlbums = new ArrayList<>();
     private int pos;
     private boolean[] favourite = new boolean[30];
+    private TextView emptyText;
+    private ImageView emptyImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favourites);
-
 
         // Create DataProvider to get albums
         DataProvider dataProvider = new DataProvider(this);
@@ -43,6 +47,17 @@ public class FavouritesActivity extends AppCompatActivity implements RecyclerLis
                 allAlbums.get(i+pos).setLikedToTrue();
                 favouriteAlbums.add(allAlbums.get(i+pos));
             }
+        }
+
+        // Set message if the favourite list is empty
+        emptyText = findViewById(R.id.empty_text);
+        emptyImage = findViewById(R.id.empty_image);
+        if (favouriteAlbums.size()==0) {
+            emptyText.setVisibility(View.VISIBLE);
+            emptyImage.setVisibility(View.VISIBLE);
+        } else {
+            emptyText.setVisibility(View.INVISIBLE);
+            emptyImage.setVisibility(View.INVISIBLE);
         }
 
         // Set up the bottom navigation bar
