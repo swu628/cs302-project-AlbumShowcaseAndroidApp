@@ -15,25 +15,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class BrowseActivity extends AppCompatActivity {
-
-    public static ArrayList<String> searchHistory = new ArrayList<>();
     private SearchView browseSearch;
     private int pos;
     private boolean[] favourite;
+
+    private DataProvider dataProvider = new DataProvider(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse);
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
-
-        // Recieve any search history from other activities
-        Intent intent = getIntent();
-        if (intent.getStringArrayListExtra("searched") != null) {
-            receiveSearched(intent.getStringArrayListExtra("searched"));
-        } else if (intent.getStringExtra("history") != null) {
-            updateHistory(intent.getStringExtra("history"));
-        }
 
         // Set up recycler view for list of search history
         setUpRecycler();
@@ -61,6 +53,7 @@ public class BrowseActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
 
                 browseSearch.setIconified(true);
+                dataProvider.updateSearched(query);
 
                 // Create new intent
                 Intent intent = new Intent(BrowseActivity.this, ListActivity.class);
@@ -70,8 +63,6 @@ public class BrowseActivity extends AppCompatActivity {
                 // Open search results
                 startActivity(intent);
 
-                // Add the current query to the search history
-                updateHistory(query);
                 setUpRecycler();
                 return true;
             }
@@ -85,17 +76,12 @@ public class BrowseActivity extends AppCompatActivity {
 
     }
 
-    public static ArrayList<String> getSearchHistory() {
-
-        return searchHistory;
-    }
-
     public void setUpRecycler() {
 
         // Create instance for recycler view
         RecyclerView recyclerView = findViewById(R.id.search_history_recycler);
         // Create instance for adapter for recycler view
-        SearchHistoryAdapter searchHistoryAdapter = new SearchHistoryAdapter(searchHistory, this);
+        SearchHistoryAdapter searchHistoryAdapter = new SearchHistoryAdapter(dataProvider.getSearchedAlbums(), this);
         // Set adapter and layout manager for the recycler view
         recyclerView.setAdapter(searchHistoryAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -136,20 +122,5 @@ public class BrowseActivity extends AppCompatActivity {
         });
     }
 
-    public static void receiveSearched(ArrayList<String> searched) {
-
-        try {
-            for (int i = 0; i < searched.size(); i++) {
-                updateHistory(searched.get(i));
-            }
-        } catch (Exception e) {
-        }
-    }
-
-    public static void updateHistory(String search) {
-
-        // Add album to search history
-        searchHistory.add(search);
-    }
 
 }
