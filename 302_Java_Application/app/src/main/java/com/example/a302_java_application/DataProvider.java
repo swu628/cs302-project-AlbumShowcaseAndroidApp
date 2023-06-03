@@ -21,7 +21,38 @@ public class DataProvider {
             R.drawable.lalisa, R.drawable.palette, R.drawable.birthday, R.drawable.the_weekend,
             R.drawable.delight, R.drawable.love_poem, R.drawable.love_war};
 
-    // int[] detailsImageNames = {R.drawable.new_jeans_1, R.drawable.new_jeans_2, R.drawable.new_jeans_3};
+    int[][]detailImage = {{R.drawable.new_jeans_1, R.drawable.new_jeans_2, R.drawable.new_jeans_3},
+        {R.drawable.the_album_1, R.drawable.the_album_2, R.drawable.the_album_3},
+        {R.drawable.i_never_die_1, R.drawable.i_never_die_2, R.drawable.i_never_die_3},
+        {R.drawable.icy_1, R.drawable.icy_2, R.drawable.icy_3},
+        {R.drawable.born_pink_1, R.drawable.born_pink_2, R.drawable.born_pink_3},
+        {R.drawable.shooting_star_1, R.drawable.shooting_star_2, R.drawable.shooting_star_3},
+        {R.drawable.bad_boy_1, R.drawable.bad_boy_2, R.drawable.bad_boy_3},
+        {R.drawable.psycho_1, R.drawable.psycho_2, R.drawable.psycho_3},
+        {R.drawable.next_level_1, R.drawable.next_level_2, R.drawable.next_level_3},
+        {R.drawable.ive_1, R.drawable.ive_2, R.drawable.ive_3},
+
+        {R.drawable.seventeen_mini_1, R.drawable.seventeen_mini_2, R.drawable.seventeen_mini_3},
+        {R.drawable.candy_1, R.drawable.candy_2, R.drawable.candy_3},
+        {R.drawable.love_shot_1, R.drawable.love_shot_2, R.drawable.love_shot_3},
+        {R.drawable.hello_future_1, R.drawable.hello_future_2, R.drawable.hello_future_3},
+        {R.drawable.cherry_bomb_1, R.drawable.cherry_bomb_2, R.drawable.cherry_bomb_3},
+        {R.drawable.treasure_1, R.drawable.treasure_2, R.drawable.treasure_3},
+        {R.drawable.seventeen_album_1, R.drawable.seventeen_album_2, R.drawable.seventeen_album_3},
+        {R.drawable.hot_sauce_1, R.drawable.hot_sauce_2, R.drawable.hot_sauce_3},
+        {R.drawable.oddinary_1, R.drawable.oddinary_2, R.drawable.oddinary_3},
+        {R.drawable.xoxo_1, R.drawable.xoxo_2, R.drawable.xoxo_3},
+
+        {R.drawable.r_1, R.drawable.r_2, R.drawable.r_3},
+        {R.drawable.solo_1, R.drawable.solo_2, R.drawable.solo_3},
+        {R.drawable.me_1, R.drawable.me_2, R.drawable.me_3},
+        {R.drawable.lalisa_1, R.drawable.lalisa_2, R.drawable.lalisa_3},
+        {R.drawable.palette_1, R.drawable.palette_2, R.drawable.palette_3},
+        {R.drawable.birthday_1, R.drawable.birthday_2, R.drawable.birthday_3},
+        {R.drawable.the_weekend_1, R.drawable.the_weekend_2, R.drawable.the_weekend_3},
+        {R.drawable.delight_1, R.drawable.delight_2, R.drawable.delight_3},
+        {R.drawable.love_poem_1, R.drawable.love_poem_2, R.drawable.love_poem_3},
+        {R.drawable.love_war_1, R.drawable.love_war_2, R.drawable.love_war_3}};
 
     public DataProvider(Context context) {
 
@@ -35,10 +66,6 @@ public class DataProvider {
         String[] artists = context.getResources().getStringArray(R.array.album_artist);
         String[] categories = context.getResources().getStringArray(R.array.album_category);
         String[] dates = context.getResources().getStringArray(R.array.album_release_date);
-//        int[] imageNames = context.getResources().getIntArray(R.array.album_image);
-//        int[] imageNames = {R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground,
-//                R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground,
-//                R.drawable.ic_launcher_foreground};
         String[] descriptions = context.getResources().getStringArray(R.array.album_description);
         String[] tracklists = context.getResources().getStringArray(R.array.album_tracklist);
         String[] contains = context.getResources().getStringArray(R.array.album_contain);
@@ -48,11 +75,11 @@ public class DataProvider {
 //            Generate random number of views for album item
             Random rand = new Random();
             int randView = rand.nextInt(20);
+            int[] detailImages = detailImage[i];
 
 //            Create and add album item to list of albums
             Album newAlbum = new Album(names[i], categories[i], artists[i], descriptions[i], tracklists[i],
-                    contains[i], imageNames[i], dates[i], false, randView);
-                    // detailsImageNames[i*3]);
+                    contains[i], imageNames[i], dates[i], false, randView, detailImages);
             albumList.add(newAlbum);
         }
 
