@@ -227,11 +227,15 @@ public class MainActivity extends AppCompatActivity implements RecyclerListInter
         Intent intent = new Intent(this, DetailsActivity.class);
 
         // Pass the variables to another activity
-        intent.putExtra("name", allAlbums.get(position).getName());
-        intent.putExtra("artist", allAlbums.get(position).getArtist());
-        intent.putExtra("image", allAlbums.get(position).getImage());
-        intent.putExtra("releaseDate", allAlbums.get(position).getReleaseDate());
-        intent.putExtra("description", allAlbums.get(position).getDescription());
+        intent.putExtra("name", mostViewed.get(position).getName());
+        intent.putExtra("artist", mostViewed.get(position).getArtist());
+        intent.putExtra("image", mostViewed.get(position).getImage());
+        intent.putExtra("releaseDate", mostViewed.get(position).getReleaseDate());
+        intent.putExtra("description", mostViewed.get(position).getDescription());
+        intent.putExtra("description", mostViewed.get(position).getDescription());
+        intent.putExtra("tracklist", mostViewed.get(position).getTracklist());
+        intent.putExtra("contain", mostViewed.get(position).getContain());
+        intent.putExtra("detailImages", mostViewed.get(position).getDetailImage());
 
         // Switch activity
         startActivity(intent);

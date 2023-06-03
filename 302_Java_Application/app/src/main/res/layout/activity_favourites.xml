@@ -8,16 +8,9 @@
 
     <TextView
         android:id="@+id/group_category"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:padding="16dp"
-        android:background="@color/top_bar"
-        android:gravity="center"
         android:text="Favourites"
-        android:textColor="@color/top_text"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        android:layout_alignParentTop="true"/>
+        style="@style/top_bar"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favourites_recycler"
@@ -50,11 +43,7 @@
         android:visibility="invisible"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
         android:id="@+id/navigation_bar"
-        android:background="@color/bottom_bar"
-        android:layout_alignParentBottom="true"
-        app:menu="@menu/bottom_navigation"/>
+        style="@style/bottom_nav_bar"/>
 
 </RelativeLayout>

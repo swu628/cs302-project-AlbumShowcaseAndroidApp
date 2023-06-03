@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ListActivity extends AppCompatActivity implements RecyclerListInterface {
 
@@ -222,6 +223,7 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
         intent.putExtra("description", allAlbums.get(position + pos).getDescription());
         intent.putExtra("tracklist", allAlbums.get(position + pos).getTracklist());
         intent.putExtra("contain", allAlbums.get(position + pos).getContain());
+        intent.putExtra("detailImages", allAlbums.get(position + pos).getDetailImage());
         intent.putExtra("position", position + pos);
 
         // Switch activity

@@ -14,11 +14,13 @@ public class Album {
     private boolean liked;
     private int views;
 
-    private int detailImage;
+    private int[] detailImage;
+
+    private int displayImage;
 
     public Album(String name, String category, String artist, String description, String tracklist,
-                 String contain, int image, String releaseDate, boolean liked, int views) {
-                 //int detailImage) {
+                 String contain, int image, String releaseDate, boolean liked, int views,
+                 int[] detailImage) {
         this.name = name;
         this.category = category;
         this.artist = artist;
@@ -29,10 +31,15 @@ public class Album {
         this.releaseDate = releaseDate;
         this.liked = liked;
         this.views = views;
+        this.detailImage = detailImage;
     }
 
-    public Album(int detailImage) {
-        this.detailImage = detailImage;
+    public Album(int displayImage) {
+        this.displayImage = displayImage;
+    }
+
+    public int getDisplayImage() {
+        return displayImage;
     }
 
     public String getName() {
@@ -65,7 +72,7 @@ public class Album {
         return releaseDate;
     }
 
-    public int getDetailImage() {return detailImage;};
+    public int[] getDetailImage() {return detailImage;};
 
     public boolean isLiked() {
         return liked;

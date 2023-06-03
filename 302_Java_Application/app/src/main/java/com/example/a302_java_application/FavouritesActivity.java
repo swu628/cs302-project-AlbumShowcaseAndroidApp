@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.WindowCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,6 +29,7 @@ public class FavouritesActivity extends AppCompatActivity implements RecyclerLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favourites);
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
 
         // Create DataProvider to get albums
         DataProvider dataProvider = new DataProvider(this);
@@ -75,6 +77,7 @@ public class FavouritesActivity extends AppCompatActivity implements RecyclerLis
     public void setUpBottomNavBar() {
         // Set up bottom navigation bar
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation_bar);
+        bottomNavigationView.setSelectedItemId(R.id.bottom_favourites);
 
         // Open required activities when items clicked
         bottomNavigationView.setOnItemSelectedListener(item -> {
