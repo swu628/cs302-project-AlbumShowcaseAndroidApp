@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -33,19 +35,20 @@ public class BrowseActivity extends AppCompatActivity {
         // Set up the bottom navigation bar
         setUpBottomNavBar();
 
+        ImageView delete = findViewById(R.id.delete_image);
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Clear search history
+                DataProvider.clearSearched();
+                setUpRecycler();
+            }
+        });
+
         // Set up search view for browse activity
         browseSearch = findViewById(R.id.browse_search_bar);
         browseSearch.clearFocus();
-
-        // Get a list of favourite albums
-        favourite = getIntent().getBooleanArrayExtra("favourite");
-        if (favourite==null) {
-            favourite = new boolean[30];
-            for (int i=0; i<30; i++) {
-                favourite[i] = false;
-            }
-        }
-        pos = getIntent().getIntExtra("pos", 0);
 
         // Set up search function
         browseSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

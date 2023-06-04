@@ -37,16 +37,30 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ImageView
+                android:id="@+id/delete_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="26dp"
+                android:layout_marginTop="12dp"
+                android:elevation="20dp"
+                android:src="@drawable/delete_button">
+            </ImageView>
+
             <TextView
                 android:id="@+id/recent_searches"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 android:gravity="left"
                 android:text="@string/recent_search"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:layout_alignParentTop="true"
-                android:layout_margin="16dp"/>
+                android:textSize="20sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/search_history_recycler"
