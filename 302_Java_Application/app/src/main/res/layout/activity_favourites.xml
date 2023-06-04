@@ -20,16 +20,18 @@
         android:layout_below="@id/group_category"
         android:layout_above="@id/navigation_bar"/>
 
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:id="@+id/empty_image"
-        android:layout_marginTop="50dp"
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="40dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_below="@id/group_category"
-        android:src="@drawable/heart"
-        android:visibility="invisible"/>
+        android:id="@+id/empty_image"
+        android:visibility="invisible"
+        app:lottie_rawRes="@raw/empty_heart"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"/>
 
     <TextView
         android:layout_width="match_parent"
