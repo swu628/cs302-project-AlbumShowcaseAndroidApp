@@ -42,6 +42,9 @@
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginTop="40dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:id="@+id/empty_search_image"
@@ -51,16 +54,19 @@
                 app:lottie_autoPlay="true"/>
 
             <TextView
+                android:id="@+id/empty_search_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/empty_search_image"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
                 android:text="Sorry, no result found"
                 android:textSize="30sp"
-                android:layout_margin="16dp"
-                android:layout_below="@id/empty_search_image"
-                android:gravity="center"
-                android:id="@+id/empty_search_text"
-                android:visibility="invisible"/>
-            
+                android:visibility="invisible" />
+
         </RelativeLayout>
 
     </ScrollView>
