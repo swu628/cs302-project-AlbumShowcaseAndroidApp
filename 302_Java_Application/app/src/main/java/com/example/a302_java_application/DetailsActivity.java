@@ -36,7 +36,6 @@ public class DetailsActivity extends AppCompatActivity {
         String tracklist = getIntent().getStringExtra("tracklist");
         String contain = getIntent().getStringExtra("contain");
         int[] detailImages = getIntent().getIntArrayExtra("detailImages");
-        int position = getIntent().getIntExtra("position", 0);
 
         // Get the ids from xml file
         back = (ImageView) findViewById(R.id.detailBack);

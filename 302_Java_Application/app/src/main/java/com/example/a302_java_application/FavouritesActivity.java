@@ -123,17 +123,7 @@ public class FavouritesActivity extends AppCompatActivity implements RecyclerLis
         intent.putExtra("description", favouriteAlbums.get(position).getDescription());
         intent.putExtra("tracklist", favouriteAlbums.get(position).getTracklist());
         intent.putExtra("contain", favouriteAlbums.get(position).getContain());
-
-        // Get the position of the album
-        int p = 0;
-        for (int i=0; i<30; i++) {
-            for (int j=0; j<30; j++) {
-                if (favouriteAlbums.get(position).getName().equals(allAlbums.get(j).getName())) {
-                    p=j;
-                }
-            }
-        }
-        intent.putExtra("position", p);
+        intent.putExtra("detailImages", favouriteAlbums.get(position).getDetailImage());
 
         // Switch activity
         startActivity(intent);
