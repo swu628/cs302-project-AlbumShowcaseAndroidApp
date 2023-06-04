@@ -27,8 +27,6 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
     // Use view holder later
     private TextView albumCategoryText;
     private ImageView back;
- updateFunctionality
-=======
     private int pos;
     private boolean[] favourite = new boolean[30];
     private TextView emptySearchText;
@@ -216,9 +214,6 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
         Intent intent = new Intent(this, DetailsActivity.class);
 
         // Pass the variables to another activity
- updateFunctionality
-
-
         intent.putExtra("name", categoryAlbums.get(position).getName());
         intent.putExtra("artist", categoryAlbums.get(position).getArtist());
         intent.putExtra("image", categoryAlbums.get(position).getImage());
