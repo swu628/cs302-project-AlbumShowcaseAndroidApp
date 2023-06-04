@@ -212,6 +212,7 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
     public void onItemClick(int position) {
         // Initialise intent
         Intent intent = new Intent(this, DetailsActivity.class);
+        DataProvider.updateViewed(categoryAlbums.get(position));
 
         // Pass the variables to another activity
         intent.putExtra("name", categoryAlbums.get(position).getName());

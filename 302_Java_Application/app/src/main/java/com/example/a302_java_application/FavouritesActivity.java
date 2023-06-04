@@ -105,6 +105,7 @@ public class FavouritesActivity extends AppCompatActivity implements RecyclerLis
     @Override
     public void onItemClick(int position) {
         Intent intent = new Intent(this, DetailsActivity.class);
+        DataProvider.updateViewed(favouriteAlbums.get(position));
 
         // Pass the variables to another activity
         intent.putExtra("name", favouriteAlbums.get(position).getName());

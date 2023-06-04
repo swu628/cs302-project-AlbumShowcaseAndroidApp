@@ -194,6 +194,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerListInter
 
         // Initialise intent
         Intent intent = new Intent(this, DetailsActivity.class);
+        DataProvider.updateViewed(mostViewed.get(position));
 
         // Pass the variables to another activity
         intent.putExtra("name", mostViewed.get(position).getName());

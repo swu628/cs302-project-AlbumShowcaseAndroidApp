@@ -8,13 +8,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class BrowseActivity extends AppCompatActivity {
+public class BrowseActivity extends AppCompatActivity implements RecyclerListInterface {
     private SearchView browseSearch;
     private int pos;
     private boolean[] favourite;
@@ -27,25 +29,34 @@ public class BrowseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_browse);
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
 
-        // Set up recycler view for list of search history
-        setUpRecycler();
+        if (DataProvider.searchedAlbums != null) {
+            // Set up recycler view for list of search history
+            setUpHistoryRecycler();
+        }
 
+        if (DataProvider.viewedAlbums != null) {
+//            Set up recycler for list of viewed albums
+            setUpViewedRecycler();
+        }
         // Set up the bottom navigation bar
         setUpBottomNavBar();
+
+        ImageView delete = findViewById(R.id.delete_image);
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Clear search history
+                DataProvider.clearSearched();
+                setUpHistoryRecycler();
+                DataProvider.clearViewed();
+                setUpViewedRecycler();
+            }
+        });
 
         // Set up search view for browse activity
         browseSearch = findViewById(R.id.browse_search_bar);
         browseSearch.clearFocus();
-
-        // Get a list of favourite albums
-        favourite = getIntent().getBooleanArrayExtra("favourite");
-        if (favourite==null) {
-            favourite = new boolean[30];
-            for (int i=0; i<30; i++) {
-                favourite[i] = false;
-            }
-        }
-        pos = getIntent().getIntExtra("pos", 0);
 
         // Set up search function
         browseSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -63,7 +74,7 @@ public class BrowseActivity extends AppCompatActivity {
                 // Open search results
                 startActivity(intent);
 
-                setUpRecycler();
+                setUpHistoryRecycler();
                 return true;
             }
 
@@ -76,7 +87,7 @@ public class BrowseActivity extends AppCompatActivity {
 
     }
 
-    public void setUpRecycler() {
+    public void setUpHistoryRecycler() {
 
         // Create instance for recycler view
         RecyclerView recyclerView = findViewById(R.id.search_history_recycler);
@@ -86,6 +97,17 @@ public class BrowseActivity extends AppCompatActivity {
         recyclerView.setAdapter(searchHistoryAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+    }
+
+    public void setUpViewedRecycler() {
+        //        Create instance for recycler view
+        RecyclerView recyclerList = findViewById(R.id.view_history_recycler);
+//        Create instance for adapter for recycler view
+        ArrayList<Album> displayAlbums = dataProvider.findFavourites(DataProvider.viewedAlbums);
+        RecyclerListAdapter recyclerListAdapter = new RecyclerListAdapter(displayAlbums, this, this);
+//        Set adapter and layout manager for the recycler view
+        recyclerList.setAdapter(recyclerListAdapter);
+        recyclerList.setLayoutManager(new LinearLayoutManager(this));
     }
 
     public void setUpBottomNavBar() {
@@ -123,4 +145,23 @@ public class BrowseActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onItemClick(int position) {
+        // Initialise intent
+        Intent intent = new Intent(this, DetailsActivity.class);
+
+        // Pass the variables to another activity
+
+        intent.putExtra("name", DataProvider.viewedAlbums.get(position).getName());
+        intent.putExtra("artist", DataProvider.viewedAlbums.get(position).getArtist());
+        intent.putExtra("image", DataProvider.viewedAlbums.get(position).getImage());
+        intent.putExtra("releaseDate", DataProvider.viewedAlbums.get(position).getReleaseDate());
+        intent.putExtra("description", DataProvider.viewedAlbums.get(position).getDescription());
+        intent.putExtra("tracklist", DataProvider.viewedAlbums.get(position).getTracklist());
+        intent.putExtra("contain", DataProvider.viewedAlbums.get(position).getContain());
+        intent.putExtra("detailImages", DataProvider.viewedAlbums.get(position).getDetailImage());
+
+        // Switch activity
+        startActivity(intent);
+    }
 }
