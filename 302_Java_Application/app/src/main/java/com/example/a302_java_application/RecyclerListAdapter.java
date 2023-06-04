@@ -63,10 +63,13 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
                     holder.favourite.setImageResource(R.drawable.heart_fill);
                     albums.get(pos).setLikedToTrue();
                     favouriteAlbums[pos] = true;
+
+                    DataProvider.updateFavourites(albums.get(pos), true);
                 } else {
                     holder.favourite.setImageResource(R.drawable.heart_stroke);
                     albums.get(pos).setLikedToFalse();
                     favouriteAlbums[pos] = false;
+                    DataProvider.updateFavourites(albums.get(pos), false);
                 }
             }
         });

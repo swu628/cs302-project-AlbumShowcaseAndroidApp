@@ -27,10 +27,13 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
     // Use view holder later
     private TextView albumCategoryText;
     private ImageView back;
+ updateFunctionality
+=======
     private int pos;
     private boolean[] favourite = new boolean[30];
     private TextView emptySearchText;
     private LottieAnimationView emptySearchImage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,15 +64,12 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
         if (buttonClicked.equals("Girl Group")) {
             this.categoryAlbums = getGirlGroupAlbums();
             albumCategoryText.setText("Girl Group Albums");
-            pos = 0;
         } else if (buttonClicked.equals("Boy Group")) {
             this.categoryAlbums = getBoyGroupAlbums();
             albumCategoryText.setText("Boy Group Albums");
-            pos = 10;
         } else if (buttonClicked.equals("Soloist")) {
             this.categoryAlbums = getSoloistAlbums();
             albumCategoryText.setText("Soloist Albums");
-            pos = 20;
         } else {
             this.categoryAlbums = getSearchResult(searchHistory);
             albumCategoryText.setText("Search Results");
@@ -79,15 +79,8 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
             }
         }
 
-//        Create instance for recycler view
-        RecyclerView recyclerList = findViewById(R.id.list_recycler);
-//        Create instance for adapter for recycler view
-        RecyclerListAdapter recyclerListAdapter = new RecyclerListAdapter(this.categoryAlbums, this, this);
-//        Set adapter and layout manager for the recycler view
-        recyclerList.setAdapter(recyclerListAdapter);
-        recyclerList.setLayoutManager(new LinearLayoutManager(this));
-
-        favourite = recyclerListAdapter.getFavouriteAlbums();
+//        Set up recycler view for list of albums
+        setUpRecycler();
 
 //        Set up the bottom navigation bar
         setUpBottomNavBar();
@@ -97,8 +90,6 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListActivity.this, MainActivity.class);
-                intent.putExtra("favourite", favourite);
-                intent.putExtra("pos", pos);
                 startActivity(intent);
                 finish();
             }
@@ -162,6 +153,18 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
         return searchResults;
     }
 
+    public void setUpRecycler() {
+//        Create instance for recycler view
+        RecyclerView recyclerList = findViewById(R.id.list_recycler);
+        DataProvider dataProvider = new DataProvider(this);
+//        Create instance for adapter for recycler view
+        ArrayList<Album> displayAlbums = dataProvider.findFavourites(this.categoryAlbums);
+        RecyclerListAdapter recyclerListAdapter = new RecyclerListAdapter(displayAlbums, this, this);
+//        Set adapter and layout manager for the recycler view
+        recyclerList.setAdapter(recyclerListAdapter);
+        recyclerList.setLayoutManager(new LinearLayoutManager(this));
+    }
+
 
     public void setUpBottomNavBar() {
         // Set up bottom navigation bar
@@ -172,10 +175,6 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
             if (item.getItemId() == R.id.bottom_home) {
                 // Create new intent
                 Intent intent = new Intent(ListActivity.this, MainActivity.class);
-
-                // Pass the favourite album to main activity
-                intent.putExtra("favourite", favourite);
-                intent.putExtra("pos", pos);
 
                 // Open main activity
                 startActivity(intent);
@@ -192,10 +191,6 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
                     intent.putExtra("history", searchHistory);
                 }
 
-                // Pass the favourite album to browse activity
-                intent.putExtra("favourite", favourite);
-                intent.putExtra("pos", pos);
-
                 // Open browse activity
                 startActivity(intent);
                 overridePendingTransition(0, 0);
@@ -205,10 +200,6 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
             } else {
                 // Create new intent
                 Intent intent = new Intent(ListActivity.this, FavouritesActivity.class);
-
-                // Pass the favourite album to browse activity
-                intent.putExtra("favourite", favourite);
-                intent.putExtra("pos", pos);
 
                 // Open favourite activity
                 startActivity(intent);
@@ -225,6 +216,9 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
         Intent intent = new Intent(this, DetailsActivity.class);
 
         // Pass the variables to another activity
+ updateFunctionality
+
+
         intent.putExtra("name", categoryAlbums.get(position).getName());
         intent.putExtra("artist", categoryAlbums.get(position).getArtist());
         intent.putExtra("image", categoryAlbums.get(position).getImage());

@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerListInter
     private Button girlGroup;
     private Button boyGroup;
     private Button soloist;
-    private int pos;
-    private boolean[] favourite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,16 +53,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerListInter
         girlGroup = findViewById(R.id.button1);
         boyGroup = findViewById(R.id.button2);
         soloist = findViewById(R.id.button3);
-
-        favourite = getIntent().getBooleanArrayExtra("favourite");
-        if (favourite==null) {
-            favourite = new boolean[30];
-            for (int i=0; i<30; i++) {
-                favourite[i] = false;
-            }
-        }
-        pos = getIntent().getIntExtra("pos", 0);
-
 
         // Connect category buttons to list activity (using for loops to avoid duplicated code)
         int i;
@@ -148,10 +136,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerListInter
                 // Create new intent
                 Intent intent = new Intent(MainActivity.this, BrowseActivity.class);
 
-                // Pass the favourite album to browse activity
-                intent.putExtra("favourite", favourite);
-                intent.putExtra("pos", pos);
-
                 // Open BrowseActivity
                 startActivity(intent);
                 overridePendingTransition(0, 0);
@@ -160,10 +144,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerListInter
             } else {
                 // Create new intent
                 Intent intent = new Intent(MainActivity.this, FavouritesActivity.class);
-
-                // Pass the favourite album to browse activity
-                intent.putExtra("favourite", favourite);
-                intent.putExtra("pos", pos);
 
                 // Open favourite activity
                 startActivity(intent);
