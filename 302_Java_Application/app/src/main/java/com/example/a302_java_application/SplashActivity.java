@@ -33,15 +33,15 @@ public class SplashActivity extends AppCompatActivity {
         logo.startAnimation(splashTransition);
 
         // Set up app opening sound
-        final MediaPlayer sound = MediaPlayer.create(this, R.raw.sound);
+        final MediaPlayer sound = MediaPlayer.create(this, R.raw.interface_welcome);
+        sound.start();
 
-        // Open main activity after 6 seconds
+        // Open main activity after 4 seconds
         final Intent intent = new Intent (this, MainActivity.class);
         Thread timer = new Thread() {
             public void run () {
                 try {
-                    sound.start();
-                    sleep(6000);
+                    sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
