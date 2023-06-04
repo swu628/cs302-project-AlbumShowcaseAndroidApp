@@ -106,10 +106,20 @@ public class DataProvider {
     }
 
     public static void updateFavourites(Album album, boolean add) {
-        if (add & !favouriteAlbums.contains(album)) {
+        if (add) {
+
+            for (int i = 0; i < favouriteAlbums.size(); i++) {
+                if (favouriteAlbums.get(i).getName().equals(album.getName())) {
+                    return;
+                }
+            }
             favouriteAlbums.add(album);
-        } else if (!add & favouriteAlbums.contains(album)) {
-            favouriteAlbums.remove(album);
+        } else if (!add) {
+            for (int i = 0; i < favouriteAlbums.size(); i++) {
+                if (favouriteAlbums.get(i).getName().equals(album.getName())) {
+                    favouriteAlbums.remove(favouriteAlbums.get(i));
+                }
+            }
         }
     }
 
