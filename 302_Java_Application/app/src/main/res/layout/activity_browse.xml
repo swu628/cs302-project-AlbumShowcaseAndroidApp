@@ -62,6 +62,20 @@
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
+            <TextView
+                android:id="@+id/recent_views"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/search_history_recycler"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="left"
+                android:text="Recently Viewed"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/search_history_recycler"
                 android:layout_width="wrap_content"
@@ -69,6 +83,15 @@
                 android:orientation="horizontal"
                 android:layout_below="@+id/recent_searches"
                 android:layout_marginLeft="24dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/view_history_recycler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/recent_views"
+                android:layout_marginLeft="24dp"
+                android:layout_marginBottom="8dp"/>
 
         </RelativeLayout>
 

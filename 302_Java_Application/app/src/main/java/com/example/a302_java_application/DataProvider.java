@@ -13,6 +13,8 @@ public class DataProvider {
 
     static ArrayList<String> searchedAlbums = new ArrayList<>();
 
+    static ArrayList<Album> viewedAlbums = new ArrayList<>();
+
     static ArrayList<Album> favouriteAlbums = new ArrayList<>();
 
     int[] imageNames = {R.drawable.new_jeans, R.drawable.the_album,
@@ -97,12 +99,26 @@ public class DataProvider {
     public static void clearSearched() {
         searchedAlbums = new ArrayList<>();
     }
+
+    public static void clearViewed() {
+        viewedAlbums = new ArrayList<>();
+    }
     public static void clearFavourites() {
         favouriteAlbums = new ArrayList<>();
     }
 
     public static void updateSearched(String album) {
         searchedAlbums.add(album);
+    }
+
+    public static void updateViewed(Album album) {
+
+        for (int i = 0; i < viewedAlbums.size(); i++) {
+            if (viewedAlbums.get(i).getName().equals(album.getName())) {
+                return;
+            }
+        }
+        viewedAlbums.add(album);
     }
 
     public static void updateFavourites(Album album, boolean add) {
