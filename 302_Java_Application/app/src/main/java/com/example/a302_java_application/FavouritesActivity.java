@@ -20,8 +20,6 @@ public class FavouritesActivity extends AppCompatActivity implements RecyclerLis
 
     private ArrayList<Album> allAlbums = new ArrayList<>();
     private ArrayList<Album> favouriteAlbums = new ArrayList<>();
-    private int pos;
-    private boolean[] favourite = new boolean[30];
     private TextView emptyText;
     private ImageView emptyImage;
 
@@ -39,17 +37,7 @@ public class FavouritesActivity extends AppCompatActivity implements RecyclerLis
         // Update list of all albums for DataProvider class
         dataProvider.updateAlbumList(this.allAlbums);
 
-        favourite = getIntent().getBooleanArrayExtra("favourite");
-        pos = getIntent().getIntExtra("pos", 0);
-
-        // Get a list of favourite albums
-        int i;
-        for (i = 0; i < 10; i++) {
-            if (favourite[i]==true) {
-                allAlbums.get(i+pos).setLikedToTrue();
-                favouriteAlbums.add(allAlbums.get(i+pos));
-            }
-        }
+        favouriteAlbums = DataProvider.getFavouriteAlbums();
 
         // Set message if the favourite list is empty
         emptyText = findViewById(R.id.empty_text);
@@ -65,6 +53,12 @@ public class FavouritesActivity extends AppCompatActivity implements RecyclerLis
         // Set up the bottom navigation bar
         setUpBottomNavBar();
 
+//        Set up the recycler view for list of favourite albums
+        setUpRecycler();
+    }
+
+    public void setUpRecycler() {
+
         // Create instance for recycler view
         RecyclerView recyclerList = findViewById(R.id.favourites_recycler);
         // Create instance for adapter for recycler view
@@ -72,6 +66,7 @@ public class FavouritesActivity extends AppCompatActivity implements RecyclerLis
         // Set adapter and layout manager for the recycler view
         recyclerList.setAdapter(recyclerListAdapter);
         recyclerList.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     public void setUpBottomNavBar() {
@@ -84,9 +79,6 @@ public class FavouritesActivity extends AppCompatActivity implements RecyclerLis
             if (item.getItemId() == R.id.bottom_home) {
                 // Create new intent
                 Intent intent = new Intent(FavouritesActivity.this, MainActivity.class);
-                // Pass the favourite album to browse activity
-                intent.putExtra("favourite", favourite);
-                intent.putExtra("pos", pos);
                 // Open main activity
                 startActivity(intent);
                 overridePendingTransition(0, 0);
@@ -96,9 +88,6 @@ public class FavouritesActivity extends AppCompatActivity implements RecyclerLis
             } else if (item.getItemId() == R.id.bottom_browse) {
                 // Create new intent
                 Intent intent = new Intent(FavouritesActivity.this, BrowseActivity.class);
-                // Pass the favourite album to browse activity
-                intent.putExtra("favourite", favourite);
-                intent.putExtra("pos", pos);
                 // Open Browse Activity
                 startActivity(intent);
                 overridePendingTransition(0, 0);
@@ -106,6 +95,8 @@ public class FavouritesActivity extends AppCompatActivity implements RecyclerLis
                 return true;
 
             } else {
+//                Refresh list of favourite albums
+                setUpRecycler();
                 return true;
             }
         });
@@ -125,17 +116,6 @@ public class FavouritesActivity extends AppCompatActivity implements RecyclerLis
         intent.putExtra("contain", favouriteAlbums.get(position).getContain());
         intent.putExtra("detailImages", favouriteAlbums.get(position).getDetailImage());
 
-
-        // Get the position of the album
-        int p = 0;
-        for (int i=0; i<30; i++) {
-            for (int j=0; j<30; j++) {
-                if (favouriteAlbums.get(position).getName().equals(allAlbums.get(j).getName())) {
-                    p=j;
-                }
-            }
-        }
-        intent.putExtra("position", p);
 
         // Switch activity
         startActivity(intent);

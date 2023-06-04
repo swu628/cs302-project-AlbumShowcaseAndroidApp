@@ -90,7 +90,6 @@ public class DataProvider {
 //        Return list of albums
         return albumList;
     }
-
     public static ArrayList<String> getSearchedAlbums() {return searchedAlbums;}
 
     public static ArrayList<Album> getFavouriteAlbums() {return favouriteAlbums;}
@@ -107,12 +106,24 @@ public class DataProvider {
     }
 
     public static void updateFavourites(Album album, boolean add) {
-        if (add) {
+        if (add & !favouriteAlbums.contains(album)) {
             favouriteAlbums.add(album);
-        } else {
+        } else if (!add & favouriteAlbums.contains(album)) {
             favouriteAlbums.remove(album);
         }
+    }
 
+    public ArrayList<Album> findFavourites(ArrayList<Album> albums) {
+
+        for (int i = 0; i < favouriteAlbums.size(); i++) {
+            for (int j = 0; j < albums.size(); j++) {
+                if (favouriteAlbums.get(i).getName().equals(albums.get(j).getName())) {
+                    albums.get(j).setLikedToTrue();
+                }
+            }
+        }
+
+        return albums;
     }
 
 //    Update static list of all albums for ease of use for all activity classes
