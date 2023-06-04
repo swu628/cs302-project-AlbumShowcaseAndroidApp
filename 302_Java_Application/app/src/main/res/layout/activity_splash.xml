@@ -11,7 +11,7 @@
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="160dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/logo"
         app:lottie_rawRes="@raw/music"
