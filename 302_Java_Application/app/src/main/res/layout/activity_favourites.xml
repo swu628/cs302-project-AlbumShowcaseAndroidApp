@@ -12,37 +12,54 @@
         android:text="Favourites"
         style="@style/top_bar"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/favourites_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:orientation="horizontal"
-        android:layout_below="@id/group_category"
-        android:layout_above="@id/navigation_bar"/>
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="40dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_below="@id/group_category"
-        android:id="@+id/empty_image"
-        android:visibility="invisible"
-        app:lottie_rawRes="@raw/empty_heart"
-        app:lottie_loop="true"
-        app:lottie_autoPlay="true"/>
-
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Your favourite list is currently empty"
-        android:textSize="30dp"
-        android:layout_margin="16dp"
-        android:layout_below="@id/empty_image"
-        android:gravity="center_horizontal|center_vertical"
-        android:id="@+id/empty_text"
-        android:visibility="invisible"/>
+        android:layout_below="@id/group_category"
+        android:layout_above="@id/navigation_bar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/favourites_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"/>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/empty_image"
+                android:visibility="invisible"
+                app:lottie_rawRes="@raw/empty_heart"
+                app:lottie_loop="true"
+                app:lottie_autoPlay="true"/>
+
+            <TextView
+                android:id="@+id/empty_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/empty_image"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:text="Your favourite list is currently empty"
+                android:textSize="30sp"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation_bar"
