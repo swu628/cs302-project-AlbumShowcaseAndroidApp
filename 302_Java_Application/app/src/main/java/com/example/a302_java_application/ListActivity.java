@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -26,6 +27,13 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
     // Use view holder later
     private TextView albumCategoryText;
     private ImageView back;
+ updateFunctionality
+=======
+    private int pos;
+    private boolean[] favourite = new boolean[30];
+    private TextView emptySearchText;
+    private LottieAnimationView emptySearchImage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +44,8 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
         // Use view holder later
         albumCategoryText = (TextView) findViewById(R.id.group_category);
         back = (ImageView) findViewById(R.id.detailBack);
+        emptySearchText = (TextView) findViewById(R.id.empty_search_text);
+        emptySearchImage = (LottieAnimationView) findViewById(R.id.empty_search_image);
 
 //        Create DataProvider to get albums
         DataProvider dataProvider = new DataProvider(this);
@@ -63,6 +73,10 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
         } else {
             this.categoryAlbums = getSearchResult(searchHistory);
             albumCategoryText.setText("Search Results");
+            if (this.categoryAlbums.isEmpty()) {
+                emptySearchText.setVisibility(View.VISIBLE);
+                emptySearchImage.setVisibility(View.VISIBLE);
+            }
         }
 
 //        Set up recycler view for list of albums
@@ -202,6 +216,8 @@ public class ListActivity extends AppCompatActivity implements RecyclerListInter
         Intent intent = new Intent(this, DetailsActivity.class);
 
         // Pass the variables to another activity
+ updateFunctionality
+
 
         intent.putExtra("name", categoryAlbums.get(position).getName());
         intent.putExtra("artist", categoryAlbums.get(position).getArtist());

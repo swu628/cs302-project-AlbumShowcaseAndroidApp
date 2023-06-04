@@ -22,14 +22,54 @@
         app:srcCompat="@drawable/back"
         android:contentDescription="Back"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_recycler"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
         android:layout_below="@id/group_category"
-        android:layout_above="@id/navigation_bar"
-        android:layout_marginTop="8dp"/>
+        android:layout_above="@id/navigation_bar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/empty_search_image"
+                android:visibility="invisible"
+                app:lottie_rawRes="@raw/empty_result"
+                app:lottie_loop="true"
+                app:lottie_autoPlay="true"/>
+
+            <TextView
+                android:id="@+id/empty_search_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/empty_search_image"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:text="Sorry, no result found"
+                android:textSize="30sp"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation_bar"
