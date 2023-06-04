@@ -6,5 +6,6 @@
     <color name="top_bar">#E3EFCA</color>
     <color name="bottom_bar">#BEDB85</color>
     <color name="top_text">#487024</color>
+    <color name="background_colour">#E3EFCA</color>
 
 </resources>
