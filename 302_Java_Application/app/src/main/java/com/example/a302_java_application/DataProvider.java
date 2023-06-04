@@ -9,7 +9,11 @@ import java.util.Random;
 public class DataProvider {
 
     private Context context;
-    static ArrayList<Album> allAlbums;
+    static ArrayList<Album> allAlbums = new ArrayList<>();
+
+    static ArrayList<String> searchedAlbums = new ArrayList<>();
+
+    static ArrayList<Album> favouriteAlbums = new ArrayList<>();
 
     int[] imageNames = {R.drawable.new_jeans, R.drawable.the_album,
             R.drawable.i_never_die, R.drawable.icy,
@@ -87,6 +91,29 @@ public class DataProvider {
         return albumList;
     }
 
+    public static ArrayList<String> getSearchedAlbums() {return searchedAlbums;}
+
+    public static ArrayList<Album> getFavouriteAlbums() {return favouriteAlbums;}
+
+    public static void clearSearched() {
+        searchedAlbums = new ArrayList<>();
+    }
+    public static void clearFavourites() {
+        favouriteAlbums = new ArrayList<>();
+    }
+
+    public static void updateSearched(String album) {
+        searchedAlbums.add(album);
+    }
+
+    public static void updateFavourites(Album album, boolean add) {
+        if (add) {
+            favouriteAlbums.add(album);
+        } else {
+            favouriteAlbums.remove(album);
+        }
+
+    }
 
 //    Update static list of all albums for ease of use for all activity classes
     public static void updateAlbumList(ArrayList<Album> albumList) {

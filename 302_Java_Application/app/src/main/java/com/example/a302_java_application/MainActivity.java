@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerListInter
 
     private ArrayList<Album> allAlbums = new ArrayList<>();
     private ArrayList<Album> mostViewed = new ArrayList<>();
-    private ArrayList<String> searched = new ArrayList<>();
+    private DataProvider dataProvider = new DataProvider(this);
     private SearchView searchView;
     private Button girlGroup;
     private Button boyGroup;
@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerListInter
         setContentView(R.layout.activity_main);
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
 
-//        Create DataProvider to get albums
-        DataProvider dataProvider = new DataProvider(this);
 //        Get list of all albums and save to attribute
         allAlbums = dataProvider.getAlbums();
 
@@ -100,9 +98,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerListInter
               @Override
               public boolean onQueryTextSubmit(String query) {
 
+                  dataProvider.updateSearched(query);
+
                   searchView.setIconified(true);
 //                  Add query to search history
-                  searched.add(query);
 //                  Create new intent
                   Intent intent = new Intent(MainActivity.this, ListActivity.class);
 //                  Add extra to pass query to ListActivity
@@ -121,10 +120,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerListInter
 
 //        Set up the bottom navigation bar
         setUpBottomNavBar();
-    }
-
-    public void clearSearched() {
-        this.searched = new ArrayList<String>();
     }
 
     public void setUpRecycler() {
@@ -152,12 +147,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerListInter
             } else if (item.getItemId() == R.id.bottom_browse) {
                 // Create new intent
                 Intent intent = new Intent(MainActivity.this, BrowseActivity.class);
-
-                // Send list of search history to BrowseActivity
-                intent.putStringArrayListExtra("searched", searched);
-
-                // Clear search history from Main Activity
-                clearSearched();
 
                 // Pass the favourite album to browse activity
                 intent.putExtra("favourite", favourite);
